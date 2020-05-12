@@ -1,0 +1,11 @@
+# binaries
+myteams_server
+myteams_cli
+
+# object files
+build/
+
+# unit testing
+unit_tests
+*.gcno
+*.gcda

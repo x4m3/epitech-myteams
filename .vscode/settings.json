@@ -1,0 +1,15 @@
+{
+    "editor.rulers": [
+        80
+    ],
+    "workbench.colorCustomizations": {
+        "editorRuler.foreground": "#ff0000"
+    },
+    "files.exclude": {
+        "**/*.gcno": true,
+        "**/*.gcda": true
+    },
+    "files.associations": {
+        "*.h": "c"
+    }
+}

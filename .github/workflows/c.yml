@@ -1,0 +1,56 @@
+name: c project
+
+on:
+  push:
+    branches: master
+
+jobs:
+  check-coding-style:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: check coding style
+        uses: jidicula/clang-format-action@master
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: make fclean
+        run: make fclean
+      - name: build project
+        run: make
+  unit-test:
+    needs: build
+    runs-on: ubuntu-18.04
+    steps:
+      - name: install criterion & gcovr
+        run: |
+          sudo add-apt-repository ppa:snaipewastaken/ppa
+          sudo apt update
+          sudo apt install criterion-dev gcovr
+      - uses: actions/checkout@v2
+      - name: compile tests
+        run: make build_tests
+      - name: list tests
+        run: ./unit_tests --list
+      - name: run tests
+        run: ./unit_tests
+  push-epitech:
+    needs: unit-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: fetch all commits
+        run: git fetch --prune --unshallow
+      - name: setup ssh
+        run: |
+          mkdir -p ~/.ssh/
+          eval `ssh-agent`
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 400 ~/.ssh/id_rsa
+          ssh-add
+          ssh-keyscan git.epitech.eu > ~/.ssh/known_hosts
+      - name: add epitech repository
+        run: git remote add epitech git@git.epitech.eu:/philippe.loctaux@epitech.eu/NWP_myteams_2019
+      - name: push to repository
+        run: git push epitech master
