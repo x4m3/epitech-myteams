@@ -12,7 +12,7 @@ BUILD_DIR = build
 
 CC = cc
 CFLAGS += -Wall -Wextra -I./libs/myteams -I./inc
-LDFLAGS +=
+LDFLAGS += -L$(PWD)/libs/myteams -lmyteams
 
 OBJ_SHARED = $(SRC_SHARED:%.c=$(BUILD_DIR)/%.o)
 SRC_SHARED =	src/shared/bin.c
