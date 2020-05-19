@@ -11,7 +11,7 @@ OUTPUT_CLI = myteams_cli
 BUILD_DIR = build
 
 CC = cc
-CFLAGS += -Wall -Wextra -I./inc
+CFLAGS += -Wall -Wextra -I./libs/myteams -I./inc
 LDFLAGS +=
 
 OBJ_SHARED = $(SRC_SHARED:%.c=$(BUILD_DIR)/%.o)
