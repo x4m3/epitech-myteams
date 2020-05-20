@@ -1,0 +1,65 @@
+
+
+.data
+	teams
+		team1-uuid
+			info.team
+			channel1-uuid
+				info.channel
+				thread1-uuid
+					info.thread
+					replies are stored in info file
+			channel2-uuid
+				info.channel
+		team2-uuid
+			info.team
+			channel1-uuid
+				info.channel
+			channel2-uuid
+				info.channel
+				thread1-uuid
+					info.thread
+					replies are stored in info file
+	users
+		user1-uuid.user
+		user2-uuid.user
+	direct-messages
+		user1-uuid__user2-uuid
+			info.message
+			messages are stored in info message
+
+
+user-uuid.user
+UUID=aaaaaa
+USERNAME=phil
+SUBSCRIBED_TEAMS=bbbbb
+SUBSCRIBED_TEAMS=ccccc
+SUBSCRIBED_TEAMS=ddddd
+
+info.message
+uuid1__uuid2
+UUID1=uuid1
+UUID2=uuid2
+MESSAGE=author-uuid=timestamp=bodycontent
+MESSAGE=author-uuid=timestamp=bodycontent
+MESSAGE=author-uuid=timestamp=bodycontent
+
+info.team
+UUID=uuid
+NAME=team-name
+DESCRIPTION=team-description
+SUBSCRIBED_USER=user1-uuid
+SUBSCRIBED_USER=user2-uuid
+
+info.channel
+UUID=uuid
+NAME=channel-name
+DESCRIPTION=channel-description
+
+info.thread
+UUID=thread-uuid
+AUTHOR=author-uuid
+CREATION=timestamp
+TITLE=thread-title
+INITIAL_MESSAGE=bodycontent
+MESSAGE=author-uuid=timestamp=bodycontent
