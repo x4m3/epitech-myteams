@@ -5,7 +5,7 @@
 ** main
 */
 
-#include <stdio.h> /* for printf */
+#include <stdio.h>  /* for printf */
 #include <string.h> /* for strcmp */
 
 static int display_usage(const char *bin, const int ret)
