@@ -8,8 +8,10 @@
 #ifndef SERVER_H_
 #define SERVER_H_
 
+#include <netinet/in.h> /* for sockaddr_in */
 #include <stdbool.h>
 #include <sys/queue.h>
+#include <sys/select.h> /* for fd_set */
 #include <uuid/uuid.h>
 #include "myteams.h"
 #include <bits/types/time_t.h>
@@ -61,14 +63,23 @@ typedef struct {
 typedef struct {
     char username[MAX_NAME_LENGTH];
     char user_uuid[UUID_STR_LEN];
-    instance_t *list_of_instance;
+    instance_t *list_of_instance; // TODO: liste chainee de instance
     bool is_loggedin;
-    LIST_ENTRY(team_t) next_team;
 } user_info_t;
 
 typedef struct {
-    LIST_ENTRY(user_info_t) next_user;
+    user_info_t *users;
     LIST_ENTRY(team_t) next_team;
     LIST_ENTRY(message_t) next_message;
 } my_teams_t;
+
+typedef struct {
+    int socket_fd;
+    struct sockaddr_in addr;
+    fd_set active;
+    fd_set read;
+    int max_fd;
+    my_teams_t *my_teams;
+} server_t;
+
 #endif // SERVER_H_
