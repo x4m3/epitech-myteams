@@ -63,7 +63,7 @@ typedef struct {
 typedef struct {
     char username[MAX_NAME_LENGTH];
     char user_uuid[UUID_STR_LEN];
-    instance_t *list_of_instance; // TODO: liste chainee de instance
+    LIST_ENTRY(instance_t) next_instance;
     bool is_loggedin;
 } user_info_t;
 
