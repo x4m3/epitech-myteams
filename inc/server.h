@@ -14,6 +14,7 @@
 #include <sys/select.h> /* for fd_set */
 #include <uuid/uuid.h>
 #include "myteams.h"
+#include <stdio.h>
 #include <bits/types/time_t.h>
 
 enum where_e { GLOBAL = 0, TEAM, CHANNEL, THREAD };
@@ -64,7 +65,7 @@ typedef struct {
     char username[MAX_NAME_LENGTH];
     char user_uuid[UUID_STR_LEN];
     LIST_ENTRY(instance_t) next_instance;
-    bool is_loggedin;
+    bool online;
 } user_info_t;
 
 typedef struct {
@@ -74,12 +75,25 @@ typedef struct {
 } my_teams_t;
 
 typedef struct {
+    user_info_t *user;
+    int socket_fd;
+    FILE *input;
+} net_user_t;
+
+typedef struct {
     int socket_fd;
     struct sockaddr_in addr;
     fd_set active;
     fd_set read;
     int max_fd;
+    net_user_t *net_users;
     my_teams_t *my_teams;
 } server_t;
+
+server_t *server_init(char **av);
+void server_loop(server_t *server);
+bool client_init(server_t *server);
+void client_delete(net_user_t *net_user);
+bool client_handle(net_user_t *net_user);
 
 #endif // SERVER_H_
