@@ -32,9 +32,9 @@
 user-uuid.user
 UUID=aaaaaa
 USERNAME=phil
-SUBSCRIBED_TEAMS=bbbbb
-SUBSCRIBED_TEAMS=ccccc
-SUBSCRIBED_TEAMS=ddddd
+SUBSCRIBED_TEAM=bbbbb
+SUBSCRIBED_TEAM=ccccc
+SUBSCRIBED_TEAM=ddddd
 
 info.message
 uuid1__uuid2
