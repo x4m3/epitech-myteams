@@ -18,7 +18,11 @@ OBJ_SHARED = $(SRC_SHARED:%.c=$(BUILD_DIR)/%.o)
 SRC_SHARED =	src/shared/bin.c
 
 OBJ_SERVER = $(SRC_SERVER_MAIN:%.c=$(BUILD_DIR)/%.o)
-SRC_SERVER =	src/server/server.c
+SRC_SERVER =	src/server/server_init.c \
+				src/server/server_loop.c \
+				src/server/client_init.c \
+				src/server/client_delete.c \
+				src/server/client_handle.c
 SRC_SERVER_MAIN =	src/server/main.c \
 				$(SRC_SERVER)
 

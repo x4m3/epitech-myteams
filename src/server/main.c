@@ -7,6 +7,7 @@
 
 #include <stdio.h>  /* for printf */
 #include <string.h> /* for strcmp */
+#include "server.h"
 
 static int display_usage(const char *bin, const int ret)
 {
@@ -17,9 +18,16 @@ static int display_usage(const char *bin, const int ret)
 
 int main(int ac, char **av)
 {
+    server_t *server = NULL;
+
     if (ac != 2)
         return display_usage(av[0], 84);
     if (strcmp(av[1], "-help") == 0)
         return display_usage(av[0], 0);
+    server = server_init(av);
+    if (server == NULL)
+        return display_usage(av[0], 84);
+    server_loop(server);
+    // TODO: save information and cleanup
     return 0;
 }
