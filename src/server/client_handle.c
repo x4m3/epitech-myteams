@@ -17,16 +17,15 @@ static void process_input(net_user_t *net_user, char **input)
 
     for (size_t j = 0; input[j]; j++)
         printf("array[%zu]: [%s]\n", j, input[j]);
-    if (input[0] == NULL) {
-        // TODO: return bad command
-    }
+    if (input[0] == NULL)
+        client_response(net_user->socket_fd, "command not found");
     for (; commands[i].name != NULL; i++) {
         if (strcmp(commands[i].name, input[0]) == 0)
             break;
     }
-    if (commands[i].name == NULL) {
-        // TODO: return bad command
-    } else
+    if (commands[i].name == NULL)
+        client_response(net_user->socket_fd, "command not found");
+    else
         (commands[i].func)(net_user, input);
 }
 
