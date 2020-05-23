@@ -95,5 +95,7 @@ void server_loop(server_t *server);
 bool client_init(server_t *server);
 void client_delete(net_user_t *net_user);
 bool client_handle(net_user_t *net_user);
+char **client_input(FILE *input, char *buffer);
+void client_response(int output, const char *str);
 
 #endif // SERVER_H_

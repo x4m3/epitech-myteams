@@ -7,18 +7,39 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "server.h"
+#include "cmd.h"
+
+static void process_input(net_user_t *net_user, char **input)
+{
+    size_t i = 0;
+
+    for (size_t j = 0; input[j]; j++)
+        printf("array[%zu]: [%s]\n", j, input[j]);
+    if (input[0] == NULL) {
+        // TODO: return bad command
+    }
+    for (; commands[i].name != NULL; i++) {
+        if (strcmp(commands[i].name, input[0]) == 0)
+            break;
+    }
+    if (commands[i].name == NULL) {
+        // TODO: return bad command
+    } else
+        (commands[i].func)(net_user, input);
+}
 
 bool client_handle(net_user_t *net_user)
 {
-    char *input = NULL;
-    size_t input_len = 0;
-    ssize_t getline_ret = getline(&input, &input_len, net_user->input);
+    char *buffer = NULL;
+    char **array = client_input(net_user->input, buffer);
 
-    if (getline_ret == -1)
+    if (array == NULL)
         return false;
-    printf("got input from client: [%s]\n", input);
-    dprintf(net_user->socket_fd, "%s", input);
-    free(input);
+    process_input(net_user, array);
+    // dprintf(net_user->socket_fd, "okay\n");
+    free(array);
+    free(buffer);
     return true;
 }
