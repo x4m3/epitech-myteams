@@ -22,7 +22,23 @@ SRC_SERVER =	src/server/server_init.c \
 				src/server/server_loop.c \
 				src/server/client_init.c \
 				src/server/client_delete.c \
-				src/server/client_handle.c
+				src/server/client_handle.c \
+				src/server/client_input.c \
+				src/server/client_response.c \
+				src/server/cmd/cmd.c \
+				src/server/cmd/help.c \
+				src/server/cmd/login.c \
+				src/server/cmd/logout.c \
+				src/server/cmd/users.c \
+				src/server/cmd/user.c \
+				src/server/cmd/send.c \
+				src/server/cmd/messages.c \
+				src/server/cmd/subscribe.c \
+				src/server/cmd/subscribed.c \
+				src/server/cmd/use.c \
+				src/server/cmd/create.c \
+				src/server/cmd/list.c \
+				src/server/cmd/info.c
 SRC_SERVER_MAIN =	src/server/main.c \
 				$(SRC_SERVER)
 
