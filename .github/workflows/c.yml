@@ -14,6 +14,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: install dependencies
+        run: sudo apt install uuid-dev
       - uses: actions/checkout@v2
       - name: make fclean
         run: make fclean
