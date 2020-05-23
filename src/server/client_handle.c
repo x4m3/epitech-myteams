@@ -18,6 +18,7 @@ bool client_handle(net_user_t *net_user)
     if (getline_ret == -1)
         return false;
     printf("got input from client: [%s]\n", input);
+    dprintf(net_user->socket_fd, "%s", input);
     free(input);
     return true;
 }
