@@ -28,7 +28,6 @@ jobs:
       - name: install criterion & gcovr
         run: |
           sudo add-apt-repository ppa:snaipewastaken/ppa
-          sudo apt update
           sudo apt install criterion-dev gcovr
       - name: install dependencies
         run: sudo apt install uuid-dev
