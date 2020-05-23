@@ -30,6 +30,8 @@ jobs:
           sudo add-apt-repository ppa:snaipewastaken/ppa
           sudo apt update
           sudo apt install criterion-dev gcovr
+      - name: install dependencies
+        run: sudo apt install uuid-dev
       - uses: actions/checkout@v2
       - name: compile tests
         run: make build_tests
