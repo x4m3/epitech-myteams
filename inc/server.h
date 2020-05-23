@@ -8,13 +8,13 @@
 #ifndef SERVER_H_
 #define SERVER_H_
 
-#include <netinet/in.h> /* for sockaddr_in */
+#include <netinet/in.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <sys/queue.h>
-#include <sys/select.h> /* for fd_set */
+#include <sys/select.h>
 #include <uuid/uuid.h>
 #include "myteams.h"
-#include <stdio.h>
 #include <bits/types/time_t.h>
 
 enum where_e { GLOBAL = 0, TEAM, CHANNEL, THREAD };

@@ -17,7 +17,7 @@ static void update_clients(server_t *server)
         if (FD_ISSET(current, &server->read)) {
             ret = client_handle(&server->net_users[i]);
             // TODO: check if instance is disconnected
-            // if (ret == false || server->net_users[i].user->online == false) {
+            // if (ret == false || server->net_users[i].user->online == false)
             if (ret == false) {
                 // TODO: delete instance from user
                 printf("[%d]: bye bye\n", server->net_users[i].socket_fd);

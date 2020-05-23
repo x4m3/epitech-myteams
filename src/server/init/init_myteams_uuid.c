@@ -5,8 +5,8 @@
 ** foo
 */
 
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 #include "server.h"
 
 myteams_uuid_t *init_myteams_uuid(void)

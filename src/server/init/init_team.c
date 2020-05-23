@@ -5,8 +5,8 @@
 ** foo
 */
 
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 #include "server.h"
 
 team_t *init_team(void)
