@@ -8,8 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "server.h"
 #include "cmd.h"
+#include "server.h"
 
 static void process_input(net_user_t *net_user, char **input)
 {
