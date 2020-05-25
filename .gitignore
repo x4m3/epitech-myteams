@@ -9,3 +9,16 @@ build/
 unit_tests
 *.gcno
 *.gcda
+
+
+#clion
+CMakeLists.txt
+cmake-build-debug/
+.idea/
+
+#floobits
+.flooignore
+.floo
+
+#testQueue
+test_queue/
