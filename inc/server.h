@@ -42,6 +42,7 @@ typedef struct thread_t {
     char title[MAX_DESCRIPTION_LENGTH];
     char message[MAX_BODY_LENGTH];
     TAILQ_ENTRY(thread_t) next_thread;
+    message_t *list_of_message;
     TAILQ_HEAD(, message_t) message_head;
 } thread_t;
 

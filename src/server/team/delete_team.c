@@ -7,12 +7,11 @@
 
 #include "server.h"
 
-void delete_team(team_t *team)
+void delete_team(my_teams_t *my_team)
 {
-    while (team_head.tqh_first != NULL) {
-        team = TAILQ_FIRST(&head);
-        TAILQ_REMOVE(&head, head.tqh_first, next);
-        free(team->username);
+    while (my_team->team_head.tqh_first != NULL) {
+        my_team->list_of_team = TAILQ_FIRST(&my_team->team_head);
+        TAILQ_REMOVE(&my_team->team_head, my_team->team_head.tqh_first, next);
         delete_channel(team->list_of_channel);
         delete_message(team->list_of_message);
         free(team);

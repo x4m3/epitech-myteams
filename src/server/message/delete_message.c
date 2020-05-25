@@ -7,11 +7,12 @@
 
 #include "server.h"
 
-void delete_message(message_t *message)
+void delete_message(thread_t *thread)
 {
-    while (message_.tqh_first != NULL) {
-        message_list = TAILQ_FIRST(&message_head);
-        TAILQ_REMOVE(&message_head, message_head.tqh_first, next);
-        free(message_list);
+    while (thread->message_head.tqh_first != NULL) {
+        thread->list_of_message = TAILQ_FIRST(&thread->message_head);
+        TAILQ_REMOVE(&thread->message_head, thread->message_head.tqh_first, next);
+        free(thread->list_of_message);
     }
+    free(thread);
 }

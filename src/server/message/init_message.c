@@ -16,7 +16,6 @@ message_t *init_message(void)
     if ((message = malloc(sizeof(message_t))) == NULL)
         return NULL;
     memset(message, 0, sizeof(message_t));
-    TAILQ_HEAD(, message_t) message_head;
     TAILQ_INIT(&message_head);
     return message;
 }
