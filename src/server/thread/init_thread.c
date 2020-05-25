@@ -9,12 +9,11 @@
 #include <string.h>
 #include "server.h"
 
-thread_t *init_thread(void)
+thread_t *init_thread(channel_t *channel)
 {
-    thread_t *thread;
-
-    if ((thread = malloc(sizeof(thread_t))) == NULL)
+    if ((channel->list_of_thread = malloc(sizeof(thread_t))) == NULL)
         return NULL;
-    memset(thread, 0, sizeof(thread_t));
-    return thread;
+    memset(channel->list_of_thread, 0, sizeof(thread_t));
+    TAILQ_INIT(&channel->thread_head);
+    return channel->list_of_thread;
 }
