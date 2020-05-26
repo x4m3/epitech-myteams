@@ -16,4 +16,9 @@ void delete_team(my_teams_t *my_team)
         delete_channel(my_team->list_of_team);
         free(my_team->list_of_team);
     }
+    if (my_team->list_of_team != NULL) {
+         delete_channel(my_team->list_of_team);
+       //ree(my_team->list_of_team->list_of_channel);
+        free(my_team->list_of_team);
+    }
 }
