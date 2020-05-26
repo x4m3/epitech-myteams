@@ -115,7 +115,7 @@ void client_response(int output, const char *str);
 /* proto init structure */
 my_teams_t *init_my_teams(void);
 team_t *init_team(my_teams_t *my_teams);
-channel_t *init_channel(void);
+channel_t *init_channel(team_t *team);
 thread_t *init_thread(channel_t *channel);
 message_t *init_message(void);
 
