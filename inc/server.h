@@ -11,6 +11,8 @@
 #include <netinet/in.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <sys/queue.h>
 #include <sys/select.h>
 #include <uuid/uuid.h>
@@ -67,6 +69,7 @@ typedef struct team_t {
     myteams_uuid_t *uuid_subcribed;
     channel_t *list_of_channel;
     TAILQ_HEAD(, channel_t) channel_head;
+    TAILQ_ENTRY(team_t) next_team;
 } team_t;
 
 typedef struct user_info_t {
@@ -75,7 +78,7 @@ typedef struct user_info_t {
     instance_t *list_of_instance;
     TAILQ_HEAD(, instance_t) instance_head;
     bool online;
-    TAILQ_ENTRY(user_info_t);
+    TAILQ_ENTRY(user_info_t) next_users;
 } user_info_t;
 
 typedef struct {
@@ -118,8 +121,8 @@ my_teams_t *init_my_teams(void);
 team_t *init_team(my_teams_t *my_teams);
 channel_t *init_channel(team_t *team);
 thread_t *init_thread(channel_t *channel);
-message_t *init_message(void);
-instance_t *init_instance(void);
+message_t *init_message(thread_t *thread);
+instance_t *init_instance(user_info_t *user);
 
 /* proto delete structure */
 void delete_myteams(my_teams_t *myteams);
@@ -128,6 +131,7 @@ void delete_channel(team_t *team);
 void delete_thread(channel_t *channel);
 void delete_message(thread_t *thread);
 void delete_instance(user_info_t *user);
+void delete_user_info(my_teams_t *myteams);
 
 
 

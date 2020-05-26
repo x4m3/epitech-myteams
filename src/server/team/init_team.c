@@ -15,5 +15,5 @@ team_t *init_team(my_teams_t *my_teams)
         return NULL;
     memset(my_teams->list_of_team, 0, sizeof(team_t));
     TAILQ_INIT(&my_teams->team_head);
-    return team;
+    return my_teams->list_of_team;
 }

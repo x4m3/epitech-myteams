@@ -9,7 +9,7 @@
 
 void delete_myteams(my_teams_t *myteams)
 {
-    //TODO delete user_info
-    delete_team(myteams->list_of_team);
+    delete_user_info(myteams);
+    delete_team(myteams);
     //delete_message()
 }

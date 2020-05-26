@@ -9,13 +9,11 @@
 #include <string.h>
 #include "server.h"
 
-message_t *init_message(void)
+message_t *init_message(thread_t *thread)
 {
-    message_t *message;
-
-    if ((message = malloc(sizeof(message_t))) == NULL)
+    if ((thread->list_of_message = malloc(sizeof(message_t))) == NULL)
         return NULL;
-    memset(message, 0, sizeof(message_t));
-    TAILQ_INIT(&message_head);
-    return message;
+    memset(thread->list_of_message, 0, sizeof(message_t));
+    TAILQ_INIT(&thread->message_head);
+    return thread->list_of_message;
 }

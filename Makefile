@@ -18,27 +18,44 @@ OBJ_SHARED = $(SRC_SHARED:%.c=$(BUILD_DIR)/%.o)
 SRC_SHARED =	src/shared/bin.c
 
 OBJ_SERVER = $(SRC_SERVER_MAIN:%.c=$(BUILD_DIR)/%.o)
-SRC_SERVER =	src/server/server_init.c \
-				src/server/server_loop.c \
-				src/server/client_init.c \
-				src/server/client_delete.c \
-				src/server/client_handle.c \
-				src/server/client_input.c \
-				src/server/client_response.c \
-				src/server/cmd/cmd.c \
-				src/server/cmd/help.c \
-				src/server/cmd/login.c \
-				src/server/cmd/logout.c \
-				src/server/cmd/users.c \
-				src/server/cmd/user.c \
-				src/server/cmd/send.c \
-				src/server/cmd/messages.c \
-				src/server/cmd/subscribe.c \
-				src/server/cmd/subscribed.c \
-				src/server/cmd/use.c \
-				src/server/cmd/create.c \
-				src/server/cmd/list.c \
-				src/server/cmd/info.c
+SRC_SERVER =	    src/server/channel/delete_channel.c \
+                    src/server/channel/init_channel.c \
+                    src/server/cmd/cmd.c \
+                    src/server/cmd/create.c \
+                    src/server/cmd/help.c \
+                    src/server/cmd/info.c \
+                    src/server/cmd/list.c \
+                    src/server/cmd/login.c \
+                    src/server/cmd/logout.c \
+                    src/server/cmd/messages.c \
+                    src/server/cmd/send.c \
+                    src/server/cmd/subscribe.c \
+                    src/server/cmd/subscribed.c \
+                    src/server/cmd/use.c \
+                    src/server/cmd/user.c \
+                    src/server/cmd/users.c \
+                    src/server/init/init_myteams_uuid.c \
+                    src/server/instance/delete_instance.c \
+                    src/server/instance/init_instance.c \
+                    src/server/message/delete_message.c \
+                    src/server/message/init_message.c \
+                    src/server/myteams/delete_myteams.c \
+                    src/server/myteams/init_myteams.c \
+                    src/server/team/delete_team.c \
+                    src/server/team/init_team.c \
+                    src/server/thread/delete_thread.c \
+                    src/server/thread/init_thread.c \
+                    src/server/user_info/add_user.c \
+                    src/server/user_info/delete_user_info.c \
+                    src/server/user_info/init_user_info.c \
+                    src/server/client_delete.c \
+                    src/server/client_handle.c \
+                    src/server/client_init.c \
+                    src/server/client_input.c \
+                    src/server/client_response.c \
+                    src/server/server_init.c \
+                    src/server/server_loop.c
+
 SRC_SERVER_MAIN =	src/server/main.c \
 				$(SRC_SERVER)
 
