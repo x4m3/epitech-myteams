@@ -110,4 +110,23 @@ bool client_handle(net_user_t *net_user);
 char **client_input(FILE *input, char *buffer);
 void client_response(int output, const char *str);
 
+
+
+/* proto init structure */
+my_teams_t *init_my_teams(void);
+team_t *init_team(my_teams_t *my_teams);
+channel_t *init_channel(void);
+thread_t *init_thread(channel_t *channel);
+message_t *init_message(void);
+
+/* proto delete structure */
+void delete_myteams(my_teams_t *myteams);
+void delete_team(my_teams_t *my_team);
+void delete_channel(team_t *team);
+void delete_thread(channel_t *channel);
+void delete_message(thread_t *thread);
+
+
+
+
 #endif // SERVER_H_
