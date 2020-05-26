@@ -80,6 +80,7 @@ typedef struct user_info_t {
 
 typedef struct {
     user_info_t *users;
+    TAILQ_HEAD(, user_info_t) user_info_head;
     team_t *list_of_team;
     TAILQ_HEAD(, team_t) team_head;
     message_t *list_of_message;
@@ -118,6 +119,7 @@ team_t *init_team(my_teams_t *my_teams);
 channel_t *init_channel(team_t *team);
 thread_t *init_thread(channel_t *channel);
 message_t *init_message(void);
+instance_t *init_instance(void);
 
 /* proto delete structure */
 void delete_myteams(my_teams_t *myteams);
@@ -125,6 +127,7 @@ void delete_team(my_teams_t *my_team);
 void delete_channel(team_t *team);
 void delete_thread(channel_t *channel);
 void delete_message(thread_t *thread);
+void delete_instance(user_info_t *user);
 
 
 

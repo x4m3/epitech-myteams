@@ -9,12 +9,11 @@
 #include <string.h>
 #include "server.h"
 
-instance_t *init_instance(void)
+instance_t *init_instance(user_info_t *user)
 {
-    instance_t *instance;
-
-    if ((instance = malloc(sizeof(instance_t))) == NULL)
+    if ((user->list_of_instance = malloc(sizeof(instance_t))) == NULL)
         return NULL;
-    memset(instance, 0, sizeof(instance_t));
-    return instance;
+    memset(user->list_of_instance, 0, sizeof(instance_t));
+    TAILQ_INIT(&user->instance_head);
+    return user->list_of_instance;
 }
