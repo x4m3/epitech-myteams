@@ -3,7 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/inc/**"
+                "${workspaceFolder}/inc/**",
+                "${workspaceFolder}/libs/myteams/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

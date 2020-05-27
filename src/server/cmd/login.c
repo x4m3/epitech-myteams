@@ -26,7 +26,6 @@ static char *remove_quotes(const char *source)
         return NULL;
     source++;
     strncpy(str, source, i);
-    i++;
     str[i] = 0;
     return str;
 }
