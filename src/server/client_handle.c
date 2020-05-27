@@ -37,7 +37,6 @@ bool client_handle(net_user_t *net_user)
     if (array == NULL)
         return false;
     process_input(net_user, array);
-    // dprintf(net_user->socket_fd, "okay\n");
     free(array);
     free(buffer);
     return true;

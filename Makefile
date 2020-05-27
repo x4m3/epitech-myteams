@@ -54,7 +54,8 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
                     src/server/client_input.c \
                     src/server/client_response.c \
                     src/server/server_init.c \
-                    src/server/server_loop.c
+                    src/server/server_loop.c \
+					src/server/cmd/tools/check_nb_args.c
 
 SRC_SERVER_MAIN =	src/server/main.c \
 				$(SRC_SERVER)

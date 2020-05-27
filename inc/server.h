@@ -131,4 +131,7 @@ void delete_message(thread_t *thread);
 void delete_instance(user_info_t *user);
 void delete_user_info(my_teams_t *myteams);
 
+/* command tools */
+size_t check_nb_args(char **args);
+
 #endif // SERVER_H_

@@ -39,7 +39,7 @@ static server_t *mem_alloc(void)
 
     if (server == NULL)
         return NULL;
-    server->my_teams = malloc(sizeof(my_teams_t));
+    server->my_teams = init_my_teams();
     if (server->my_teams == NULL) {
         free(server);
         return NULL;
