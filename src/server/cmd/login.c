@@ -51,8 +51,7 @@ void cmd_login(net_user_t *user, char **args)
         }
     }
     if (found == false) {
-        add_user(global_teams, param_no_quotes);
-        current_user = (user_info_t *) global_teams->user_info_head.tqh_last;
+        current_user = add_user(global_teams, param_no_quotes);
     }
     add_instance(current_user, user->socket_fd);
     if (current_user->online == false)

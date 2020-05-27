@@ -13,6 +13,6 @@ user_info_t *init_user_info(my_teams_t *myteam)
         return NULL;
     memset(myteam->users, 0, sizeof(user_info_t));
     TAILQ_INIT(&myteam->user_info_head);
-    //init_instance(myteam->users);
+    init_instance(myteam->users);
     return myteam->users;
 }
