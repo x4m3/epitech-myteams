@@ -17,8 +17,8 @@
 #include <sys/select.h>
 #include <uuid/uuid.h>
 #include "myteams.h"
-#include <bits/types/time_t.h>
 #include "logging_server.h"
+#include <bits/types/time_t.h>
 
 enum where_e { GLOBAL = 0, TEAM, CHANNEL, THREAD };
 
@@ -136,6 +136,7 @@ void delete_user_info(my_teams_t *myteams);
 void delete_myteams_uuid(team_t *team);
 
 bool check_input_args(size_t nb, char **args, int socket_fd);
+char *remove_quotes(const char *source);
 
 my_teams_t *get_global_teams(my_teams_t *new);
 user_info_t *add_user(my_teams_t *myTeams, char *username);

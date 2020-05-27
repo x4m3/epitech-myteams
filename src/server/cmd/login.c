@@ -7,29 +7,6 @@
 
 #include "server.h"
 
-/**
-** remove the quotes from a string
-** @param source
-** @return
-**
-** malloc: length of orig string - 2 (the 2 quotes)
-**
-** we *ASSUME* that the first quote is at position [0]
-** and the last one is that position [strlen]
-*/
-static char *remove_quotes(const char *source)
-{
-    size_t i = strlen(source) - 2;
-    char *str = malloc(sizeof(char) * (i + 1));
-
-    if (str == NULL)
-        return NULL;
-    source++;
-    strncpy(str, source, i);
-    str[i] = 0;
-    return str;
-}
-
 void cmd_login(net_user_t *user, char **args)
 {
     my_teams_t *global_teams = get_global_teams(NULL);
@@ -57,5 +34,6 @@ void cmd_login(net_user_t *user, char **args)
     if (current_user->online == false)
         current_user->online = true;
     server_event_user_logged_in(current_user->user_uuid);
+    free(param_no_quotes);
     client_response(user->socket_fd, "welcome to the server");
 }
