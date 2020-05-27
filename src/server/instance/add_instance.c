@@ -15,7 +15,7 @@ instance_t *add_instance(user_info_t *user, int socket_id)
         return NULL;
     memset(new_instance, 0, sizeof(instance_t));
     new_instance->socket_id = socket_id;
-    TAILQ_INSERT_TAIL(&user->instance_head, new_instance, next_instance);
+    TAILQ_INSERT_HEAD(&user->instance_head, new_instance, next_instance);
     printf("added new instance for socket [%d]\n", new_instance->socket_id);
     return new_instance;
 }
