@@ -9,7 +9,6 @@
 
 user_info_t *add_user(my_teams_t *myTeams, char *username)
 {
-    //    user_info_t *new_user;
     uuid_t new_uuid_bin;
 
     if ((myTeams->users = malloc(sizeof(user_info_t))) == NULL)
