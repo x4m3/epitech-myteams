@@ -15,7 +15,4 @@ void delete_myteams_uuid(team_t *team)
             next_user_uuid);
         free(team->uuid_subcribed);
     }
-    if (team->uuid_subcribed != NULL) {
-        free(team->uuid_subcribed);
-    }
 }

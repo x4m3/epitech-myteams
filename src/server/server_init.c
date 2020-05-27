@@ -44,6 +44,7 @@ static server_t *mem_alloc(void)
         free(server);
         return NULL;
     }
+    get_global_teams(server->my_teams);
     server->net_users = malloc(sizeof(net_user_t) * FD_SETSIZE);
     if (server->net_users == NULL) {
         free(server->my_teams);
