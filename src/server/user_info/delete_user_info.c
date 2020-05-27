@@ -15,4 +15,6 @@ void delete_user_info(my_teams_t *myteams)
             myteams->user_info_head.tqh_first, next_users);
         free(myteams->list_of_team);
     }
+     if (myteams->users != NULL)
+         free(myteams->users);
 }

@@ -34,7 +34,8 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
                     src/server/cmd/use.c \
                     src/server/cmd/user.c \
                     src/server/cmd/users.c \
-                    src/server/init/init_myteams_uuid.c \
+                    src/server/my_teams_uuid/init_myteams_uuid.c \
+                    src/server/my_teams_uuid/delete_myteams_uuid.c \
                     src/server/instance/delete_instance.c \
                     src/server/instance/init_instance.c \
                     src/server/message/delete_message.c \

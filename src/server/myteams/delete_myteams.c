@@ -9,9 +9,9 @@
 
 void delete_myteams(my_teams_t *myteams)
 {
-   // delete_user_info(myteams);
+    delete_user_info(myteams);
     delete_team(myteams);
-    // delete_message()
+    delete_message(myteams, 'm');
     if (myteams != NULL)
         free(myteams);
 }

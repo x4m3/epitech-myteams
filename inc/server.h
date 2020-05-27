@@ -67,6 +67,7 @@ typedef struct team_t {
     char team_uuid[UUID_STR_LEN];
     char description[MAX_DESCRIPTION_LENGTH];
     myteams_uuid_t *uuid_subcribed;
+    TAILQ_HEAD(, myteams_uuid_t) my_teams_uuid_head;
     channel_t *list_of_channel;
     TAILQ_HEAD(, channel_t) channel_head;
     TAILQ_ENTRY(team_t) next_team;
@@ -121,16 +122,18 @@ channel_t *init_channel(team_t *team);
 thread_t *init_thread(channel_t *channel);
 message_t *init_message(thread_t *thread);
 instance_t *init_instance(user_info_t *user);
+myteams_uuid_t *init_myteams_uuid(team_t *team);
 
 /* proto delete structure */
 void delete_myteams(my_teams_t *myteams);
 void delete_team(my_teams_t *my_team);
 void delete_channel(team_t *team);
 void delete_thread(channel_t *channel);
-void delete_message(thread_t *thread);
+void delete_message(void *thread, char c);
 void delete_instance(user_info_t *user);
 void delete_user_info(my_teams_t *myteams);
+void delete_myteams_uuid(team_t *team);
 
-bool check_input_args(const size_t nb, char **args, int socket_fd);
+bool check_input_args(size_t nb, char **args, int socket_fd);
 
 #endif // SERVER_H_

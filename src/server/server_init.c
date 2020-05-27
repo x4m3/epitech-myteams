@@ -50,7 +50,6 @@ static server_t *mem_alloc(void)
         free(server);
         return NULL;
     }
-    memset(server->my_teams, 0, sizeof(my_teams_t));
     memset(server->net_users, 0, sizeof(net_user_t) * FD_SETSIZE);
     return server;
 }
