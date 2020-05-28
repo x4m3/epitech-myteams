@@ -14,7 +14,7 @@ void list_user(my_teams_t *myTeams, int socket_user)
         client_response(socket_user, myTeams->users->username);
         client_response(socket_user, myTeams->users->user_uuid);
         if (myTeams->users->online == true)
-            client_response(socket_user,"online");
+            client_response(socket_user, "online");
         else
             client_response(socket_user, "not online");
     }

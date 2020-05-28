@@ -9,7 +9,6 @@
 #define SERVER_H_
 
 #include <netinet/in.h>
-#include "unistd.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,6 +17,7 @@
 #include <sys/select.h>
 #include <uuid/uuid.h>
 #include "myteams.h"
+#include "unistd.h"
 #include "logging_server.h"
 #include <bits/types/time_t.h>
 
