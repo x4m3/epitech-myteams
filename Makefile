@@ -41,16 +41,21 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
                     src/server/instance/add_instance.c \
                     src/server/message/delete_message.c \
                     src/server/message/init_message.c \
+                    src/server/message/list_private_message.c \
+                    src/server/message/list_reply_thread.c \
                     src/server/myteams/delete_myteams.c \
                     src/server/myteams/init_myteams.c \
                     src/server/team/delete_team.c \
                     src/server/team/init_team.c \
                     src/server/team/add_team.c \
+                    src/server/team/list_user_subcribed.c \
+                    src/server/team/list_team.c \
                     src/server/thread/delete_thread.c \
                     src/server/thread/init_thread.c \
                     src/server/user_info/delete_user_info.c \
                     src/server/user_info/init_user_info.c \
                     src/server/user_info/add_user.c \
+                    src/server/user_info/list_user.c \
                     src/server/client_delete.c \
                     src/server/client_handle.c \
                     src/server/client_init.c \

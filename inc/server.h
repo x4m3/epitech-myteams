@@ -142,4 +142,7 @@ my_teams_t *get_global_teams(my_teams_t *new);
 user_info_t *add_user(my_teams_t *myTeams, char *username);
 instance_t *add_instance(user_info_t *user, int socket_id);
 
+
+void list_user(my_teams_t *myTeams);
+
 #endif // SERVER_H_

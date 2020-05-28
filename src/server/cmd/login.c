@@ -33,6 +33,7 @@ void cmd_login(net_user_t *user, char **args)
     add_instance(current_user, user->socket_fd);
     if (current_user->online == false)
         current_user->online = true;
+    //list_user(global_teams);
     server_event_user_logged_in(current_user->user_uuid);
     free(param_no_quotes);
     client_response(user->socket_fd, "welcome to the server");
