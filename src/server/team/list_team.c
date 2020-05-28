@@ -7,12 +7,12 @@
 
 #include "server.h"
 
-void list_team(my_teams_t *myTeams)
+void list_team(my_teams_t *myTeams, int socket_user)
 {
     TAILQ_FOREACH(myTeams->list_of_team, &myTeams->team_head, next_team)
     {
-        printf("%s %s : %s\n", myTeams->list_of_team->name,
-            myTeams->list_of_team->team_uuid,
-            myTeams->list_of_team->description);
+        client_response(socket_user, myTeams->list_of_team->name);
+        client_response(socket_user,myTeams->list_of_team->team_uuid);
+        client_response(socket_user, myTeams->list_of_team->description);
     }
 }

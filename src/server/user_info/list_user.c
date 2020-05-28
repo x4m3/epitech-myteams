@@ -7,15 +7,15 @@
 
 #include "server.h"
 
-void list_user(my_teams_t *myTeams)
+void list_user(my_teams_t *myTeams, int socket_user)
 {
     TAILQ_FOREACH(myTeams->users, &myTeams->user_info_head, next_users)
     {
-        printf("%s %s :", myTeams->users->username,
-            myTeams->users->user_uuid);
+        client_response(socket_user, myTeams->users->username);
+        client_response(socket_user, myTeams->users->user_uuid);
         if (myTeams->users->online == true)
-            printf("online\n");
+            client_response(socket_user,"online");
         else
-            printf("not online\n");
+            client_response(socket_user, "not online");
     }
 }

@@ -143,6 +143,7 @@ user_info_t *add_user(my_teams_t *myTeams, char *username);
 instance_t *add_instance(user_info_t *user, int socket_id);
 
 
-void list_user(my_teams_t *myTeams);
+void list_user(my_teams_t *myTeams, int socket_user);
+void list_team(my_teams_t *myTeams, int socket_user);
 
 #endif // SERVER_H_
