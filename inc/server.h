@@ -23,7 +23,7 @@
 enum where_e { GLOBAL = 0, TEAM, CHANNEL, THREAD };
 
 typedef struct instance_t {
-    int socket_id;
+    int socket_fd;
     enum where_e where;
     char team_uuid[UUID_STR_LEN];
     char channel_uuid[UUID_STR_LEN];
@@ -132,7 +132,8 @@ void delete_team(my_teams_t *my_team);
 void delete_channel(team_t *team);
 void delete_thread(channel_t *channel);
 void delete_message(void *thread, char c);
-void delete_instance(user_info_t *user);
+void delete_all_instances(user_info_t *user);
+bool delete_one_instance(user_info_t *user, int socket_fd);
 void delete_user_info(my_teams_t *myteams);
 void delete_myteams_uuid(team_t *team);
 

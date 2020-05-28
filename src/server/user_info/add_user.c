@@ -13,6 +13,7 @@ user_info_t *add_user(my_teams_t *myTeams, char *username)
 
     if ((myTeams->users = malloc(sizeof(user_info_t))) == NULL)
         return NULL;
+    memset(myTeams->users, 0, sizeof(user_info_t));
     uuid_generate_random(new_uuid_bin);
     uuid_unparse(new_uuid_bin, myTeams->users->user_uuid);
     strcpy(myTeams->users->username, username);
