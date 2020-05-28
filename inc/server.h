@@ -9,7 +9,6 @@
 #define SERVER_H_
 
 #include <netinet/in.h>
-#include "unistd.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,6 +17,7 @@
 #include <sys/select.h>
 #include <uuid/uuid.h>
 #include "myteams.h"
+#include "unistd.h"
 #include "logging_server.h"
 #include <bits/types/time_t.h>
 
@@ -149,5 +149,7 @@ void list_user(my_teams_t *myTeams, int socket_user);
 void list_team(my_teams_t *myTeams, int socket_user);
 void list_users_subscribed(team_t *team, int socket_user);
 myteams_uuid_t *add_team_uuid(team_t *team);
+
+size_t get_number_instance(user_info_t *user);
 
 #endif // SERVER_H_

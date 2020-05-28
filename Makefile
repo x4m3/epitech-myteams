@@ -67,7 +67,8 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
                     src/server/server_loop.c \
 					src/server/cmd/tools/check_input_args.c \
 					src/server/cmd/tools/remove_quotes.c \
-					src/server/get_global_teams.c
+					src/server/get_global_teams.c \
+					src/server/instance/get_number_instance.c
 SRC_SERVER_MAIN =	src/server/main.c \
 				$(SRC_SERVER)
 
