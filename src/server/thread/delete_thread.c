@@ -17,7 +17,7 @@ void delete_thread(channel_t *channel)
         free(channel->list_of_thread);
     }
     if (channel->list_of_thread != NULL) {
-        delete_message(channel->list_of_thread,'t');
+        delete_message(channel->list_of_thread, 't');
         free(channel->list_of_thread);
     }
 }

@@ -7,11 +7,10 @@
 
 #include "server.h"
 
-message_t *add_reply(char message[MAX_BODY_LENGTH],
-    char author[UUID_STR_LEN],
-    thread_t *thread)
+message_t *add_reply(
+    char message[MAX_BODY_LENGTH], char author[UUID_STR_LEN], thread_t *thread)
 {
-    time_t now = time (NULL);
+    time_t now = time(NULL);
 
     if ((thread->list_of_message = malloc(sizeof(team_t))) == NULL)
         return NULL;
