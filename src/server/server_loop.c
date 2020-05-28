@@ -19,10 +19,11 @@ static void update_clients(server_t *server)
             // TODO: check if instance is disconnected
             // if (ret == false || server->net_users[i].user->online == false)
             if (ret == false) {
-                printf("current instance %p\n",
-                    server->net_users[i].user->list_of_instance);
-                delete_one_instance(server->net_users[i].user, current);
+                printf("%p\n", &server->net_users[i]);
+                if (server->net_users[i].user != NULL)
+                    delete_one_instance(server->net_users[i].user, current);
                 printf("[%d]: bye bye\n", server->net_users[i].socket_fd);
+                client_delete(&(server->net_users[i]));
             }
         }
     }
