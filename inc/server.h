@@ -124,6 +124,7 @@ thread_t *init_thread(channel_t *channel);
 message_t *init_message(thread_t *thread);
 instance_t *init_instance(user_info_t *user);
 myteams_uuid_t *init_myteams_uuid(team_t *team);
+user_info_t *init_user_info(my_teams_t *myteam);
 
 /* proto delete structure */
 void delete_myteams(my_teams_t *myteams);
@@ -141,7 +142,6 @@ char *remove_quotes(const char *source);
 my_teams_t *get_global_teams(my_teams_t *new);
 user_info_t *add_user(my_teams_t *myTeams, char *username);
 instance_t *add_instance(user_info_t *user, int socket_id);
-
 
 void list_user(my_teams_t *myTeams, int socket_user);
 void list_team(my_teams_t *myTeams, int socket_user);
