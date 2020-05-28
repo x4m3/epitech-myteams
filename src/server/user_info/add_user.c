@@ -19,9 +19,10 @@ user_info_t *add_user(my_teams_t *myTeams, char *username)
 
     TAILQ_INSERT_HEAD(&(myTeams->user_info_head), myTeams->users, next_users);
 
-    printf(
-        "add new user: [%s] [%s]\n", myTeams->users->username, myTeams->users->user_uuid);
-    server_event_user_created(myTeams->users->user_uuid, myTeams->users->username);
+    printf("add new user: [%s] [%s]\n", myTeams->users->username,
+        myTeams->users->user_uuid);
+    server_event_user_created(
+        myTeams->users->user_uuid, myTeams->users->username);
     init_instance(myTeams->users);
     return myTeams->users;
 }
