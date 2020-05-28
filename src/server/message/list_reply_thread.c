@@ -11,7 +11,7 @@ void list_reply_thread(thread_t *thread)
 {
     TAILQ_FOREACH(thread->list_of_message, &thread->message_head, next_message)
     {
-        printf("%ld %s : %s", thread->list_of_message->creation_date,
+        printf("%ld %s : %s\n", thread->list_of_message->creation_date,
             thread->list_of_message->author,
             thread->list_of_message->body_message);
     }
