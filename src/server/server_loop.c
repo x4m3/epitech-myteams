@@ -17,6 +17,8 @@ static void update_clients(server_t *server)
         current = server->net_users[i].socket_fd;
         if (FD_ISSET(current, &server->read)) {
             ret = client_handle(&server->net_users[i]);
+            // TODO: check if instance is disconnected
+            // if (ret == false || server->net_users[i].user->online == false)
             if (ret == false) {
                 if (server->net_users[i].user != NULL)
                     delete_one_instance(server->net_users[i].user, current);

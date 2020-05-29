@@ -24,7 +24,8 @@ message_t *add_reply(
     return thread->list_of_message;
 }
 
-message_t *add_private_message(char message[MAX_BODY_LENGTH], char author[UUID_STR_LEN], my_teams_t *myTeams)
+message_t *add_private_message(char message[MAX_BODY_LENGTH],
+    char author[UUID_STR_LEN], my_teams_t *myTeams)
 {
     time_t now = time(NULL);
 
@@ -38,5 +39,4 @@ message_t *add_private_message(char message[MAX_BODY_LENGTH], char author[UUID_S
     printf("add new message: [%s] [%s]\n", myTeams->list_of_message->author,
         myTeams->list_of_message->body_message);
     return myTeams->list_of_message;
-
 }

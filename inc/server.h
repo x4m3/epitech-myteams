@@ -148,8 +148,16 @@ instance_t *add_instance(user_info_t *user, int socket_id);
 void list_user(my_teams_t *myTeams, int socket_user);
 void list_team(my_teams_t *myTeams, int socket_user);
 void list_users_subscribed(team_t *team, int socket_user);
-myteams_uuid_t *add_team_uuid(team_t *team);
-
+myteams_uuid_t *add_team_uuid(team_t *team, char user_uuid[UUID_STR_LEN]);
+team_t *add_team(char name[MAX_NAME_LENGTH],
+    char description[MAX_DESCRIPTION_LENGTH], my_teams_t *myTeams);
+channel_t *add_channel(char title[MAX_NAME_LENGTH],
+    char description[MAX_DESCRIPTION_LENGTH], team_t *team);
+thread_t *add_thread(char author[MAX_NAME_LENGTH],
+    char title[MAX_DESCRIPTION_LENGTH], char message[MAX_BODY_LENGTH],
+    channel_t *channel);
+message_t *add_reply(
+    char message[MAX_BODY_LENGTH], char author[UUID_STR_LEN], thread_t *thread);
 size_t get_number_instance(user_info_t *user);
 
 bool stay_alive(int new);

@@ -19,7 +19,9 @@ team_t *add_team(char name[MAX_NAME_LENGTH],
     strcpy(myTeams->list_of_team->description, description);
     strcpy(myTeams->list_of_team->name, name);
     TAILQ_INSERT_HEAD(&myTeams->team_head, myTeams->list_of_team, next_team);
-    printf("add new team: [%s] [%s]\n", myTeams->list_of_team->name,
-        myTeams->list_of_team->description);
+    init_myteams_uuid(myTeams->list_of_team);
+    printf("add new team: [%s] [%s] [%s]\n", myTeams->list_of_team->name,
+        myTeams->list_of_team->description, myTeams->list_of_team->team_uuid);
+
     return myTeams->list_of_team;
 }

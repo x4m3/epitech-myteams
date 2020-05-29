@@ -7,7 +7,7 @@
 
 #include "server.h"
 
-thread_t *add_channel(char author[MAX_NAME_LENGTH],
+thread_t *add_thread(char author[MAX_NAME_LENGTH],
     char title[MAX_DESCRIPTION_LENGTH], char message[MAX_BODY_LENGTH],
     channel_t *channel)
 {

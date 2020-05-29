@@ -20,6 +20,7 @@ SRC_SHARED =	src/shared/bin.c
 OBJ_SERVER = $(SRC_SERVER_MAIN:%.c=$(BUILD_DIR)/%.o)
 SRC_SERVER =	    src/server/channel/delete_channel.c \
                     src/server/channel/init_channel.c \
+                    src/server/channel/add_channel.c \
                     src/server/cmd/cmd.c \
                     src/server/cmd/create.c \
                     src/server/cmd/help.c \
@@ -40,11 +41,13 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
 					src/server/my_teams_uuid/add_myteams_uuid.c \
 			        src/server/instance/delete_instance.c \
                     src/server/instance/init_instance.c \
+                    src/server/instance/get_number_instance.c \
                     src/server/instance/add_instance.c \
                     src/server/message/delete_message.c \
                     src/server/message/init_message.c \
                     src/server/message/list_private_message.c \
                     src/server/message/list_reply_thread.c \
+                    src/server/message/add_message.c \
                     src/server/myteams/delete_myteams.c \
                     src/server/myteams/init_myteams.c \
                     src/server/team/delete_team.c \
@@ -54,6 +57,7 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
                     src/server/team/list_team.c \
                     src/server/thread/delete_thread.c \
                     src/server/thread/init_thread.c \
+                    src/server/thread/add_thread.c \
                     src/server/user_info/delete_user_info.c \
                     src/server/user_info/init_user_info.c \
                     src/server/user_info/add_user.c \
@@ -68,7 +72,6 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
 					src/server/cmd/tools/check_input_args.c \
 					src/server/cmd/tools/remove_quotes.c \
 					src/server/get_global_teams.c \
-					src/server/instance/get_number_instance.c \
 					src/server/stay_alive.c
 SRC_SERVER_MAIN =	src/server/main.c \
 				$(SRC_SERVER)
