@@ -24,7 +24,7 @@ static bool remove_end_of_line(char *str)
     return true;
 }
 
-static char *get_cmd(char **buffer)
+static char *get_cmd(char **buffer, size_t *offset)
 {
     char *raw = *buffer;
     char *str = NULL;
@@ -38,7 +38,8 @@ static char *get_cmd(char **buffer)
     for (size_t i = 0; i < len_raw; i++)
         str[i] = raw[i];
     str[len_raw] = 0;
-    *buffer += (len_raw + 1);
+    *offset = (len_raw + 1);
+    *buffer += *offset;
     return str;
 }
 
@@ -48,6 +49,7 @@ char **client_input(FILE *input)
     char *getline_buffer = NULL;
     char *buffer = NULL;
     size_t len = 0;
+    size_t offset = 0;
 
     if (getline(&getline_buffer, &len, input) == -1)
         return NULL;
@@ -63,7 +65,7 @@ char **client_input(FILE *input)
         return NULL;
     }
     printf("before get_cmd: [%s]\n", buffer);
-    array[0] = get_cmd(&buffer);
+    array[0] = get_cmd(&buffer, &offset);
     if (array[0] == NULL) {
         free(buffer);
         free(array);
@@ -75,6 +77,7 @@ char **client_input(FILE *input)
         array[i] = NULL;
     }
     array[4] = NULL;
-    // free(buffer);
+    buffer -= offset;
+    free(buffer);
     return array;
 }
