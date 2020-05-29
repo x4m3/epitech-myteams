@@ -152,4 +152,6 @@ myteams_uuid_t *add_team_uuid(team_t *team);
 
 size_t get_number_instance(user_info_t *user);
 
+bool stay_alive(int new);
+
 #endif // SERVER_H_
