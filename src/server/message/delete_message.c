@@ -19,21 +19,25 @@ static void delete_msg_thread(thread_t *thread)
         free(thread->list_of_message);
 }
 
-static void delete_msg_teams(my_teams_t *myteams)
+static void delete_msg_teams(direct_message_t *direct_message)
 {
-    while (myteams->message_head.tqh_first != NULL) {
-        myteams->list_of_message = TAILQ_FIRST(&myteams->message_head);
-        TAILQ_REMOVE(&myteams->message_head, myteams->message_head.tqh_first,
-            next_message);
-        free(myteams->list_of_message);
+    while (direct_message->message_head.tqh_first != NULL) {
+        direct_message->list_of_message =
+            TAILQ_FIRST(&direct_message->message_head);
+        TAILQ_REMOVE(&direct_message->message_head,
+            direct_message->message_head.tqh_first, next_message);
+        free(direct_message->list_of_message);
     }
-    if (myteams->list_of_message != NULL)
-        free(myteams->list_of_message);
+    if (direct_message->list_of_message != NULL)
+        free(direct_message->list_of_message);
 }
 
-void delete_message(void *ptr, char c)
+void delete_conversation(direct_message_t *direct_message)
 {
-    if (c == 't')
-        return delete_msg_thread((thread_t *) ptr);
-    return delete_msg_teams((my_teams_t *) ptr);
+    delete_msg_teams(direct_message);
+}
+
+void delete_reply(thread_t *thread)
+{
+    delete_msg_thread(thread);
 }

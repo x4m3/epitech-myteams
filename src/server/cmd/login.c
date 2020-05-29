@@ -7,13 +7,17 @@
 
 #include "server.h"
 
-static user_info_t *find_user(my_teams_t *global_teams, char *username_to_find)
+user_info_t *find_user(my_teams_t *global_teams, bool username, char *to_find)
 {
     TAILQ_FOREACH(
         global_teams->users, &global_teams->user_info_head, next_users)
     {
-        if (strcmp(global_teams->users->username, username_to_find) == 0) {
-            return global_teams->users;
+        if (username == true) {
+            if (strcmp(global_teams->users->username, to_find) == 0)
+                return global_teams->users;
+        } else {
+            if (strcmp(global_teams->users->user_uuid, to_find) == 0)
+                return global_teams->users;
         }
     }
     return NULL;
@@ -34,7 +38,7 @@ void cmd_login(net_user_t *user, char **args)
     if (check_input_args(1, args, user->socket_fd) == false)
         return;
     param_no_quotes = remove_quotes(args[1]);
-    current_user = find_user(global_teams, param_no_quotes);
+    current_user = find_user(global_teams, true, param_no_quotes);
     if (current_user == NULL)
         current_user = add_user(global_teams, param_no_quotes);
     free(param_no_quotes);

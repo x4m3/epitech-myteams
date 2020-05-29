@@ -7,14 +7,13 @@
 
 #include "server.h"
 
-void list_private_message(char author[UUID_STR_LEN], my_teams_t *myTeams)
+void list_private_message(direct_message_t *direct_message)
 {
-    TAILQ_FOREACH(
-        myTeams->list_of_message, &myTeams->message_head, next_message)
+    TAILQ_FOREACH(direct_message->list_of_message,
+        &direct_message->message_head, next_message)
     {
-        if (strcmp(myTeams->list_of_message->author, author) == 0)
-            printf("%ld %s : %s\n", myTeams->list_of_message->creation_date,
-                myTeams->list_of_message->author,
-                myTeams->list_of_message->body_message);
+        printf("%ld %s : %s\n", direct_message->list_of_message->creation_date,
+            direct_message->list_of_message->author,
+            direct_message->list_of_message->body_message);
     }
 }

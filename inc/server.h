@@ -39,6 +39,14 @@ typedef struct message_t {
     TAILQ_ENTRY(message_t) next_message;
 } message_t;
 
+typedef struct direct_message_t {
+    char uuid1[UUID_STR_LEN];
+    char uuid2[UUID_STR_LEN];
+    message_t *list_of_message;
+    TAILQ_HEAD(, message_t) message_head;
+    TAILQ_ENTRY(direct_message_t) next_direct_message;
+} direct_message_t;
+
 typedef struct thread_t {
     char author[MAX_BODY_LENGTH];
     char thread_uuid[UUID_STR_LEN];
@@ -89,8 +97,8 @@ typedef struct {
     TAILQ_HEAD(, user_info_t) user_info_head;
     team_t *list_of_team;
     TAILQ_HEAD(, team_t) team_head;
-    message_t *list_of_message;
-    TAILQ_HEAD(, message_t) message_head;
+    direct_message_t *list_of_direct_message;
+    TAILQ_HEAD(, direct_message_t) direct_message_head;
 } my_teams_t;
 
 typedef struct {
@@ -126,18 +134,21 @@ message_t *init_message(thread_t *thread);
 instance_t *init_instance(user_info_t *user);
 myteams_uuid_t *init_myteams_uuid(team_t *team);
 user_info_t *init_user_info(my_teams_t *myteam);
+message_t *init_conversation(direct_message_t *direct_message);
+direct_message_t *init_direct_message(my_teams_t *my_teams);
 
 /* proto delete structure */
 void delete_myteams(my_teams_t *myteams);
 void delete_team(my_teams_t *my_team);
 void delete_channel(team_t *team);
 void delete_thread(channel_t *channel);
-void delete_message(void *thread, char c);
+void delete_reply(thread_t *thread);
 void delete_all_instances(user_info_t *user);
 bool delete_one_instance(user_info_t *user, int socket_fd);
 void delete_user_info(my_teams_t *myteams);
 void delete_myteams_uuid(team_t *team);
-
+void delete_direct_message(my_teams_t *myteams);
+void delete_conversation(direct_message_t *direct_message);
 bool check_input_args(size_t nb, char **args, int socket_fd);
 char *remove_quotes(const char *source);
 
@@ -159,6 +170,12 @@ thread_t *add_thread(char author[MAX_NAME_LENGTH],
 message_t *add_reply(char message[MAX_BODY_LENGTH], char author[UUID_STR_LEN],
     thread_t *thread);
 size_t get_number_instance(user_info_t *user);
+message_t *add_private_message(char message[MAX_BODY_LENGTH],
+    char author[UUID_STR_LEN], direct_message_t *direct_message);
+direct_message_t *add_direct_message(
+    my_teams_t *my_teams, char uuid1[UUID_STR_LEN], char uuid2[UUID_STR_LEN]);
+void list_private_message(direct_message_t *direct_message);
+user_info_t *find_user(my_teams_t *global_teams, bool username, char *to_find);
 
 bool stay_alive(int new);
 
