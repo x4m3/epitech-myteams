@@ -31,14 +31,12 @@ static void process_input(net_user_t *net_user, char **input)
 
 bool client_handle(net_user_t *net_user)
 {
-    char *buffer = NULL;
-    char **array = client_input(net_user->input, buffer);
+    char **array = client_input(net_user->input);
 
     if (array == NULL)
         return false;
     process_input(net_user, array);
     free(array[0]);
     free(array);
-    free(buffer);
     return true;
 }
