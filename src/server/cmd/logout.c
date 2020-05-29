@@ -16,5 +16,5 @@ void cmd_logout(net_user_t *user, char **args)
     if (get_number_instance(user->user) == 1)
         user->user->online = false;
     delete_one_instance(user->user, user->socket_fd);
-    client_response(user->socket_fd, "logout");
+    client_response(user->socket_fd, "you are now logged out");
 }
