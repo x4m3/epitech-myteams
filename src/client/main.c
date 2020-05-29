@@ -27,16 +27,16 @@ static int parse_args(int ac, char **av)
         return (1);
 }
 
-_Noreturn static void client_prompt(int sockFd)
+_Noreturn static void client_prompt(int sockFd, client_t *client)
 {
     char buffer[MAX_BODY_LENGTH];
     int i;
     while (1) {
         bzero(buffer, sizeof(buffer));
         i = 0;
-        while ((buffer[i++] = getchar() != '\n'))
-            ;
+        while ((buffer[i++] = getchar() != '\n'));
         write(sockFd, buffer, sizeof(buffer));
+        check_and_read_fd(sockFd, client);
     }
 }
 
@@ -60,7 +60,7 @@ int main(int ac, char **av)
     servaddr.sin_addr.s_addr = inet_addr(av[1]);
     servaddr.sin_port = htons(port);
     connect(client->sockFd, (struct sockaddr *) &servaddr, sizeof(servaddr));
-    client_prompt(client->sockFd);
+    client_prompt(client->sockFd, client);
     close(client->sockFd);
     return (0);
 }
