@@ -9,8 +9,6 @@
 #include <string.h> /* for memset */
 #include "server.h"
 
-#define SERVER_QUEUE 10
-
 static bool server_socket_creation(server_t *server, int port)
 {
     int optval = 1;

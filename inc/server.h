@@ -21,6 +21,8 @@
 #include "logging_server.h"
 #include <bits/types/time_t.h>
 
+#define SERVER_QUEUE 10
+
 enum where_e { GLOBAL = 0, TEAM, CHANNEL, THREAD };
 
 typedef struct instance_t {
