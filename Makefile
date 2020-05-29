@@ -35,6 +35,10 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
                     src/server/cmd/use.c \
                     src/server/cmd/user.c \
                     src/server/cmd/users.c \
+					src/server/direct_message/add_direct_message.c \
+					src/server/direct_message/delete_direct_message.c \
+					src/server/direct_message/init_direct_message.c \
+					src/server/direct_message/list_direct_message.c \
                     src/server/my_teams_uuid/init_myteams_uuid.c \
                     src/server/my_teams_uuid/delete_myteams_uuid.c \
 					src/server/my_teams_uuid/list_user_subscribed.c \

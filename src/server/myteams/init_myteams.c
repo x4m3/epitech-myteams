@@ -17,6 +17,6 @@ my_teams_t *init_my_teams(void)
     TAILQ_INIT(&my_teams->team_head);
     my_teams->list_of_team = init_team(my_teams);
     my_teams->users = init_user_info(my_teams);
-    //  init_message();
+    my_teams->list_of_direct_message = init_direct_message(my_teams);
     return my_teams;
 }

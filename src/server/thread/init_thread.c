@@ -5,8 +5,6 @@
 ** foo
 */
 
-#include <stdlib.h>
-#include <string.h>
 #include "server.h"
 
 thread_t *init_thread(channel_t *channel)
