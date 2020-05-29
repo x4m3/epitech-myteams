@@ -37,6 +37,7 @@ bool client_handle(net_user_t *net_user)
     if (array == NULL)
         return false;
     process_input(net_user, array);
+    free(array[0]);
     free(array);
     free(buffer);
     return true;
