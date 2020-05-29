@@ -156,8 +156,8 @@ channel_t *add_channel(char title[MAX_NAME_LENGTH],
 thread_t *add_thread(char author[MAX_NAME_LENGTH],
     char title[MAX_DESCRIPTION_LENGTH], char message[MAX_BODY_LENGTH],
     channel_t *channel);
-message_t *add_reply(
-    char message[MAX_BODY_LENGTH], char author[UUID_STR_LEN], thread_t *thread);
+message_t *add_reply(char message[MAX_BODY_LENGTH], char author[UUID_STR_LEN],
+    thread_t *thread);
 size_t get_number_instance(user_info_t *user);
 
 bool stay_alive(int new);
