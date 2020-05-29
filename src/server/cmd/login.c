@@ -41,5 +41,6 @@ void cmd_login(net_user_t *user, char **args)
     add_instance(current_user, user->socket_fd);
     set_user_online(current_user);
     server_event_user_logged_in(current_user->user_uuid);
+    user->user = current_user;
     client_response(user->socket_fd, "welcome to the server");
 }

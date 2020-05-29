@@ -14,6 +14,8 @@ bool is_user_subscribe(team_t *team, char author[UUID_STR_LEN])
     TAILQ_FOREACH(
         team->uuid_subcribed, &team->my_teams_uuid_head, next_user_uuid)
     {
+        printf("%s\n", author);
+        printf("dans la boucle %s\n", team->uuid_subcribed->uuid);
         if (strcmp(team->uuid_subcribed->uuid, author) == 0) {
             is_register = true;
             break;

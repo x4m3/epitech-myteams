@@ -22,7 +22,7 @@ async function receive(socket: Deno.Conn) {
 
 async function main() {
 
-    let inputs: Array<string> = [`/login "phil"`];
+    let inputs: Array<string> = [`/login "phil"`, `/create "new_team" "test"`];
     let socket = await Deno.connect({ port: 8080 });
 
     for (let i = 0; i < inputs.length; i++) {
@@ -35,9 +35,10 @@ async function main() {
         console.log();
     }
 
-    // last message from server
-    await receive(socket);
-
+    while (1) {
+        await receive(socket);
+        await send(socket, Deno.stdin);
+    }
     // bye bye
     socket.close();
 }

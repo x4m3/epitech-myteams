@@ -26,7 +26,9 @@ void cmd_subscribe(net_user_t *user, char **args)
     if (is_team_exist(global_teams, param_no_quotes) != NULL) {
         global_teams->list_of_team =
             is_team_exist(global_teams, param_no_quotes);
-        add_team_uuid(global_teams->list_of_team);
+        printf("%p\n", &global_teams->list_of_team->my_teams_uuid_head);
+        add_team_uuid(global_teams->list_of_team, user->user->user_uuid);
+        client_response(user->socket_fd, "welcome to the team");
     } else
         client_response(user->socket_fd, "this uuid_team isn't exist");
 }

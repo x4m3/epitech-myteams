@@ -29,7 +29,7 @@ int main(int ac, char **av)
     if (server == NULL)
         return display_usage(av[0], 84);
     server_loop(server);
+    printf("preparing to exit: saving server data\n");
     delete_myteams(server->my_teams);
-    // TODO: save information and cleanup
     return 0;
 }
