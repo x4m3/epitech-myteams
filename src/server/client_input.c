@@ -84,25 +84,10 @@ char **client_input(FILE *input)
         return NULL;
     buffer = strdup(getline_buffer);
     free(getline_buffer);
-    if (buffer == NULL)
-        return NULL;
     array = malloc(sizeof(char *) * (4 + 1));
-    if (array == NULL) {
-        free(buffer);
-        return NULL;
-    }
-    printf("before get_cmd: [%s]\n", buffer);
     array[0] = get_cmd(&buffer, &offset);
-    if (array[0] == NULL) {
-        free(buffer);
-        free(array);
-        return NULL;
-    }
-    printf("after get_cmd: [%s]\n", buffer);
-    for (size_t i = 1; i < 4; i++) {
+    for (size_t i = 1; i < 4; i++)
         array[i] = get_param(&buffer, &offset);
-        printf("after get_param: buffer [%s]\n", buffer);
-    }
     array[4] = NULL;
     buffer -= offset;
     free(buffer);
