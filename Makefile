@@ -114,14 +114,14 @@ cli: $(OBJ_SHARED) $(OBJ_CLI)
 	@$(CC) -o $(OUTPUT_CLI) $(OBJ_SHARED) $(OBJ_CLI) $(LDFLAGS)
 
 build_tests:
+	@echo "  RM       coverage"
+	@rm -rf *.gcda *gcno
 	@echo "  BUILD    $(TESTS_OUTPUT)"
 	@$(CC) $(CFLAGS) -o $(TESTS_OUTPUT) $(TESTS_SRC) $(TESTS_LDFLAGS)
 
 tests_run: build_tests
 	@echo "  RUN      $(TESTS_OUTPUT)"
 	@./$(TESTS_OUTPUT) --always-succeed
-	@echo "  RM       coverage"
-	@rm -rf *.gcda *gcno
 	@echo "  RUN      coverage"
 	@gcovr --exclude tests/
 
