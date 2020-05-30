@@ -50,14 +50,13 @@ void list_all_user_in_team(
 void cmd_subscribed(net_user_t *user, char **args)
 {
     my_teams_t *global_teams = get_global_teams(NULL);
-    char *param_no_quotes = NULL;
+    char *team_uuid = args[1];
 
-    if (args[1] == NULL)
+    if (team_uuid == NULL) {
         list_subcribed_team(
             global_teams, user->user->user_uuid, user->socket_fd);
-    else {
-        param_no_quotes = remove_quotes(args[1]);
-        list_all_user_in_team(global_teams, param_no_quotes, user->socket_fd);
+    } else {
+        list_all_user_in_team(global_teams, team_uuid, user->socket_fd);
     }
     // client_response(user->socket_fd, "subscribed");
 }
