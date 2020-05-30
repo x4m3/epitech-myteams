@@ -32,19 +32,17 @@ static void set_user_online(user_info_t *user)
 void cmd_login(net_user_t *user, char **args)
 {
     my_teams_t *global_teams = get_global_teams(NULL);
-    char *param_no_quotes = NULL;
+    char *username = args[1];
     user_info_t *current_user = NULL;
 
     if (check_input_args(1, args, user->socket_fd) == false)
         return;
-    param_no_quotes = remove_quotes(args[1]);
-    current_user = find_user(global_teams, true, param_no_quotes);
+    current_user = find_user(global_teams, true, username);
     if (current_user == NULL)
-        current_user = add_user(global_teams, param_no_quotes);
-    free(param_no_quotes);
+        current_user = add_user(global_teams, username);
     add_instance(current_user, user->socket_fd);
     set_user_online(current_user);
     server_event_user_logged_in(current_user->user_uuid);
     user->user = current_user;
-    client_response(user->socket_fd, "welcome to the server");
+    client_response(user->socket_fd, "you are now logged in");
 }
