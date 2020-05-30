@@ -16,8 +16,6 @@ static void delete_msg_thread(thread_t *thread)
         if (thread->list_of_message != NULL)
             free(thread->list_of_message);
     }
-    if (thread->list_of_message != NULL)
-        free(thread->list_of_message);
 }
 
 static void delete_msg_teams(direct_message_t *direct_message)
@@ -30,8 +28,6 @@ static void delete_msg_teams(direct_message_t *direct_message)
         if (direct_message->list_of_message != NULL)
             free(direct_message->list_of_message);
     }
-    if (direct_message->list_of_message != NULL)
-        free(direct_message->list_of_message);
 }
 
 void delete_conversation(direct_message_t *direct_message)
