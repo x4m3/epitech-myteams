@@ -14,6 +14,5 @@ direct_message_t *init_direct_message(my_teams_t *my_teams)
         return NULL;
     memset(my_teams->list_of_direct_message, 0, sizeof(direct_message_t));
     TAILQ_INIT(&my_teams->direct_message_head);
-    init_conversation(my_teams->list_of_direct_message);
     return my_teams->list_of_direct_message;
 }

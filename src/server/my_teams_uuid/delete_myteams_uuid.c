@@ -9,6 +9,7 @@
 
 void delete_myteams_uuid(team_t *team)
 {
+    printf("team uuid %p\n", team->uuid_subcribed);
     while (team->my_teams_uuid_head.tqh_first != NULL) {
         team->uuid_subcribed = TAILQ_FIRST(&team->my_teams_uuid_head);
         TAILQ_REMOVE(&team->my_teams_uuid_head,

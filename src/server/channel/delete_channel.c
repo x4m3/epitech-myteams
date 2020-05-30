@@ -14,7 +14,10 @@ void delete_channel(team_t *team)
         TAILQ_REMOVE(
             &team->channel_head, team->channel_head.tqh_first, next_channel);
         delete_thread(team->list_of_channel);
-        free(team->list_of_channel);
+        if (team->list_of_channel != NULL) {
+            delete_thread(team->list_of_channel);
+            free(team->list_of_channel);
+        }
     }
 
     if (team->list_of_channel != NULL) {
