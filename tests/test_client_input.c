@@ -41,3 +41,31 @@ Test(client_input, cmd_one_args)
         free(array[i]);
     free(array);
 }
+
+Test(client_input, cmd_two_args)
+{
+    char **array = client_input_wrapper(
+        "/create \"hello people\" \"how are you doing today?\"");
+
+    cr_assert_str_eq(array[0], "/create");
+    cr_assert_str_eq(array[1], "hello people");
+    cr_assert_str_eq(array[2], "how are you doing today?");
+    for (size_t i = 0; array[i]; i++)
+        free(array[i]);
+    free(array);
+}
+
+Test(client_input, cmd_three_args)
+{
+    char **array =
+        client_input_wrapper("/create \"hello people\" \"how are you doing "
+                             "today?\" \"would you like some tea?\"");
+
+    cr_assert_str_eq(array[0], "/create");
+    cr_assert_str_eq(array[1], "hello people");
+    cr_assert_str_eq(array[2], "how are you doing today?");
+    cr_assert_str_eq(array[3], "would you like some tea?");
+    for (size_t i = 0; array[i]; i++)
+        free(array[i]);
+    free(array);
+}
