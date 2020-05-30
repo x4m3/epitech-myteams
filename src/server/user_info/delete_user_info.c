@@ -13,7 +13,7 @@ void delete_user_info(my_teams_t *myteams)
         myteams->users = TAILQ_FIRST(&myteams->user_info_head);
         TAILQ_REMOVE(&myteams->user_info_head,
             myteams->user_info_head.tqh_first, next_users);
-        if (myteams->list_of_team != NULL) {
+        if (myteams->users != NULL) {
             delete_all_instances(myteams->users);
             free(myteams->users);
         }
