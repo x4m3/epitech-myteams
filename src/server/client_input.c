@@ -67,10 +67,7 @@ static char *get_param(char **buffer, size_t *offset)
     for (size_t i = 0; i < len_raw; i++)
         str[i] = raw[i];
     str[len_raw] = 0;
-    if (the_end == false)
-        local_offset = (len_raw + 3);
-    else
-        local_offset = (len_raw + 2);
+    local_offset = (len_raw + ((the_end == false) ? 3 : 2));
     *offset += local_offset;
     *buffer += local_offset;
     return str;
