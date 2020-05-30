@@ -84,6 +84,7 @@ SRC_CLI_MAIN =	src/cli/main.c \
 TESTS_LDFLAGS += $(LDFLAGS) -lcriterion --coverage
 TESTS_OUTPUT = unit_tests
 TESTS_SRC = tests/utils.c \
+			tests/test_client_input.c \
 			$(SRC_SHARED) \
 			$(SRC_SERVER) \
 			$(SRC_CLI)
