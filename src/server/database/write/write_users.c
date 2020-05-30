@@ -8,12 +8,19 @@
 #include "database.h"
 #include "server.h"
 
+static void store_user_data(FILE *output, user_info_t *user)
+{
+    fprintf(output, "UUID=%s\n", user->user_uuid);
+    fprintf(output, "USERNAME=%s\n", user->username);
+}
+
 static bool write_user(user_info_t *user, const char *filepath)
 {
     FILE *output = open_file_write(filepath);
 
     if (output == NULL)
         return false;
+    store_user_data(output, user);
     fclose(output);
     return true;
 }
