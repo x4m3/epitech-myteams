@@ -12,6 +12,7 @@ static void store_user_data(FILE *output, user_info_t *user)
 {
     fprintf(output, "UUID=%s\n", user->user_uuid);
     fprintf(output, "USERNAME=%s\n", user->username);
+    store_subscribed_teams(user, output);
 }
 
 static bool write_user(user_info_t *user, const char *filepath)

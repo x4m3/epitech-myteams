@@ -10,6 +10,7 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include "server.h"
 
 #define DB_ROOT_PATH    ".database/"
 #define DB_USERS_PATH   DB_ROOT_PATH "users/"
@@ -27,5 +28,8 @@ void recursive_mkdir(const char *dir);
 char *construct_filename(char *name, file_extension_e ext);
 char *construct_filepath(char *base_path, char *filename);
 FILE *open_file_write(const char *file_path);
+
+/* user */
+void store_subscribed_teams(user_info_t *user, FILE *output);
 
 #endif /* !DATABASE_H_ */

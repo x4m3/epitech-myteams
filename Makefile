@@ -81,7 +81,8 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
 					src/server/database/write/construct_filepath.c \
 					src/server/database/write/recursive_mkdir.c \
 					src/server/database/write/open_file_write.c \
-					src/server/database/write/write_users.c
+					src/server/database/write/user/write_users.c \
+					src/server/database/write/user/store_subscribed_teams.c
 SRC_SERVER_MAIN =	src/server/main.c \
 				$(SRC_SERVER)
 
