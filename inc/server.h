@@ -180,4 +180,7 @@ user_info_t *find_user(my_teams_t *global_teams, bool username, char *to_find);
 
 bool stay_alive(int new);
 
+bool write_all(my_teams_t *my_teams);
+bool write_users(my_teams_t *my_teams);
+
 #endif // SERVER_H_

@@ -37,6 +37,7 @@ int main(int ac, char **av)
         return display_usage(av[0], 84);
     server_loop(server);
     printf("preparing to exit: saving server data\n");
+    write_all(server->my_teams);
     printf("starting to cleanup memory\n");
     cleanup(server);
     printf("gtfo\n");

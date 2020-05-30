@@ -76,11 +76,12 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
 					src/server/cmd/tools/check_input_args.c \
 					src/server/get_global_teams.c \
 					src/server/stay_alive.c \
+					src/server/database/write_all.c \
 					src/server/database/write/construct_filename.c \
 					src/server/database/write/construct_filepath.c \
-					src/server/database/write/create_folder.c \
+					src/server/database/write/recursive_mkdir.c \
 					src/server/database/write/open_file_write.c \
-					src/server/database/write/write_user.c
+					src/server/database/write/write_users.c
 SRC_SERVER_MAIN =	src/server/main.c \
 				$(SRC_SERVER)
 
