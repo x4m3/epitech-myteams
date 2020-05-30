@@ -24,7 +24,7 @@ team_t *add_team(char name[MAX_NAME_LENGTH],
         init_myteams_uuid(my_teams->list_of_team);
     TAILQ_INSERT_HEAD(&my_teams->team_head, my_teams->list_of_team, next_team);
     printf("add new team: [%s] [%s] [%s]\n", my_teams->list_of_team->name,
-        my_teams->list_of_team->description, my_teams->list_of_team->team_uuid);
-
+        my_teams->list_of_team->description,
+        my_teams->list_of_team->team_uuid);
     return my_teams->list_of_team;
 }
