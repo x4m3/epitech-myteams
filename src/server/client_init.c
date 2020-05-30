@@ -38,7 +38,6 @@ bool client_init(server_t *server)
             return false;
         printf("[%d]: new client: %s\n", new_client,
             inet_ntoa(client_addr.sin_addr));
-        dprintf(new_client, "welcome to the my_teams server\n");
     }
     return true;
 }

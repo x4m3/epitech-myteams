@@ -21,6 +21,6 @@ typedef struct client_s {
     struct sockaddr_in sockaddrIn;
 } client_t;
 
-void check_and_read_fd(client_t *client);
+void manage_client_serv_com(client_t *client);
 
 #endif // EPITECH_MYTEAMS_CLIENT_H
