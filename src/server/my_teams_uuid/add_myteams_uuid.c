@@ -19,7 +19,8 @@ myteams_uuid_t *add_team_uuid(team_t *team, char user_uuid[UUID_STR_LEN])
     return team->uuid_subcribed;
 }
 
-myteams_uuid_t *add_team_to_user(user_info_t *user, char user_uuid[UUID_STR_LEN])
+myteams_uuid_t *add_team_to_user(
+    user_info_t *user, char user_uuid[UUID_STR_LEN])
 {
     if ((user->uuid_subcribed = malloc(sizeof(myteams_uuid_t))) == NULL)
         return NULL;

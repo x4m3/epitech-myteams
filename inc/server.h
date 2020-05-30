@@ -183,7 +183,8 @@ bool check_team_uuid(my_teams_t *my_teams, char uuid_to_check[UUID_STR_LEN]);
 bool check_channel_uuid(team_t *team, char uuid_to_check[UUID_STR_LEN]);
 bool check_thread_uuid(channel_t *channel, char uuid_to_check[UUID_STR_LEN]);
 team_t *find_team(my_teams_t *my_teams, char uuid[UUID_STR_LEN]);
-myteams_uuid_t *add_team_to_user(user_info_t *user, char user_uuid[UUID_STR_LEN]);
+myteams_uuid_t *add_team_to_user(
+    user_info_t *user, char user_uuid[UUID_STR_LEN]);
 
 bool stay_alive(int new);
 
