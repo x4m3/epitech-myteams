@@ -56,10 +56,9 @@ static char *get_param(char **buffer, size_t *offset)
     raw++;
     while (raw[len_raw] != 0 && raw[len_raw] != '"')
         len_raw++;
-    len_raw -= 1;
-    len_raw += 2;
+    len_raw++;
     the_end = (raw[len_raw] == ' ') ? false : true;
-    len_raw -= 1;
+    len_raw--;
     str = malloc(sizeof(char) * (len_raw + 1));
     if (str == NULL)
         return NULL;
