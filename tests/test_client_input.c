@@ -9,27 +9,35 @@
 #include <criterion/criterion.h>
 #include "server.h"
 
-Test(client_input, cmd_no_args)
+char **client_input_wrapper(char *cmd)
 {
-    char *cmd = "/logout";
     FILE *input = fmemopen(cmd, strlen(cmd), "r");
+    char **array = NULL;
+
     cr_assert_not_null(input);
-    char **array = client_input(input);
+    array = client_input(input);
     fclose(input);
     cr_assert_not_null(array);
+    return array;
+}
+
+Test(client_input, cmd_no_args)
+{
+    char **array = client_input_wrapper("/logout");
 
     cr_assert_str_eq(array[0], "/logout");
+    for (size_t i = 0; array[i]; i++)
+        free(array[i]);
+    free(array);
 }
 
 Test(client_input, cmd_one_args)
 {
-    char *cmd = "/create \"hello people\"";
-    FILE *input = fmemopen(cmd, strlen(cmd), "r");
-    cr_assert_not_null(input);
-    char **array = client_input(input);
-    fclose(input);
-    cr_assert_not_null(array);
+    char **array = client_input_wrapper("/create \"hello people\"");
 
     cr_assert_str_eq(array[0], "/create");
     cr_assert_str_eq(array[1], "hello people");
+    for (size_t i = 0; array[i]; i++)
+        free(array[i]);
+    free(array);
 }
