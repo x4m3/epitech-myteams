@@ -24,6 +24,17 @@ static bool remove_end_of_line(char *str)
     return true;
 }
 
+static char *copy_buffer(char *buffer, size_t len)
+{
+    char *str = malloc(sizeof(char) * (len + 1));
+
+    if (str == NULL)
+        return NULL;
+    for (size_t i = 0; i < len; i++)
+        str[i] = buffer[i];
+    str[len] = 0;
+}
+
 static char *get_cmd(char **buffer, size_t *offset)
 {
     char *raw = *buffer;
@@ -32,12 +43,9 @@ static char *get_cmd(char **buffer, size_t *offset)
 
     while (raw[len_raw] != 0 && raw[len_raw] != ' ')
         len_raw++;
-    str = malloc(sizeof(char) * (len_raw + 1));
+    str = copy_buffer(raw, len_raw);
     if (str == NULL)
         return NULL;
-    for (size_t i = 0; i < len_raw; i++)
-        str[i] = raw[i];
-    str[len_raw] = 0;
     *offset = (len_raw + 1);
     *buffer += *offset;
     return str;
@@ -58,12 +66,9 @@ static char *get_param(char **buffer, size_t *offset)
         len_raw++;
     the_end = (raw[++len_raw] == ' ') ? false : true;
     len_raw--;
-    str = malloc(sizeof(char) * (len_raw + 1));
+    str = copy_buffer(raw, len_raw);
     if (str == NULL)
         return NULL;
-    for (size_t i = 0; i < len_raw; i++)
-        str[i] = raw[i];
-    str[len_raw] = 0;
     local_offset = (len_raw + ((the_end == false) ? 3 : 2));
     *offset += local_offset;
     *buffer += local_offset;
