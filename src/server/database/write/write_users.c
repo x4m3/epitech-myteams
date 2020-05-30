@@ -8,29 +8,36 @@
 #include "database.h"
 #include "server.h"
 
-static bool write_user(user_info_t *user)
+static bool write_user(user_info_t *user, const char *filepath)
 {
-    FILE *output = NULL;
-    char *filename = construct_filename(user->user_uuid, USER);
-    char *filepath = NULL;
+    FILE *output = open_file_write(filepath);
 
-    if (filename == NULL)
+    if (output == NULL)
         return false;
-    filepath = construct_filepath(DB_USERS_PATH, filename);
-    if (filepath == NULL) {
-        free(filename);
-        return false;
-    }
-    printf("filepath: [%s]\n", filepath);
-    free(filepath);
+    fclose(output);
     return true;
 }
 
 bool write_users(my_teams_t *my_teams)
 {
+    char *filename = NULL;
+    char *filepath = NULL;
+    bool ret = false;
+
     TAILQ_FOREACH(my_teams->users, &my_teams->user_info_head, next_users)
     {
-        write_user(my_teams->users);
+        filename = construct_filename(my_teams->users->user_uuid, USER);
+        if (filename == NULL)
+            return false;
+        filepath = construct_filepath(DB_USERS_PATH, filename);
+        if (filepath == NULL) {
+            free(filename);
+            return false;
+        }
+        ret = write_user(my_teams->users, filepath);
+        free(filepath);
+        if (ret == false)
+            return false;
     }
     return true;
 }

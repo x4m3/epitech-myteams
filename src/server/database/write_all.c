@@ -10,6 +10,7 @@
 
 static void create_folders(void)
 {
+    printf("[database]  creating folders\n");
     recursive_mkdir(DB_USERS_PATH);
     recursive_mkdir(DB_PRIVATE_PATH);
 }
