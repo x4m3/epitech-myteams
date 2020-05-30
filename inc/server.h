@@ -92,6 +92,8 @@ typedef struct user_info_t {
     TAILQ_HEAD(, instance_t) instance_head;
     bool online;
     TAILQ_ENTRY(user_info_t) next_users;
+    myteams_uuid_t *uuid_subcribed;
+    TAILQ_HEAD(, myteams_uuid_t) my_teams_uuid_head;
 } user_info_t;
 
 typedef struct {
@@ -181,6 +183,7 @@ bool check_team_uuid(my_teams_t *my_teams, char uuid_to_check[UUID_STR_LEN]);
 bool check_channel_uuid(team_t *team, char uuid_to_check[UUID_STR_LEN]);
 bool check_thread_uuid(channel_t *channel, char uuid_to_check[UUID_STR_LEN]);
 team_t *find_team(my_teams_t *my_teams, char uuid[UUID_STR_LEN]);
+myteams_uuid_t *add_team_to_user(user_info_t *user, char user_uuid[UUID_STR_LEN]);
 
 bool stay_alive(int new);
 

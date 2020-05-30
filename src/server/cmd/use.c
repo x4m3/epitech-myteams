@@ -15,7 +15,7 @@ static int get_number_params(char **args)
         number_params++;
     return number_params - 1;
 }
-
+/*
 static void store_team(
     my_teams_t *my_teams, char arg[UUID_STR_LEN], net_user_t *user)
 {
@@ -48,11 +48,11 @@ static void store_thread(
         client_response(user->socket_fd, "this thread uuid does't exist");
     }
 }
-
+*/
 static void exec_use_params(
     int nb_args, net_user_t *user, my_teams_t *my_teams, char **arg)
 {
-    if (nb_args >= 1)
+    /*if (nb_args >= 1)
         store_team(my_teams, arg[1], user);
     if (nb_args >= 2) {
         store_channel(user->user->list_of_instance->)
@@ -61,6 +61,7 @@ static void exec_use_params(
         //store_thread(my_teams, arg[1], user);
 
     }
+     */
 }
 
 void cmd_use(net_user_t *user, char **args)
