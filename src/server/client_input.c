@@ -83,8 +83,10 @@ char **client_input(FILE *input)
     size_t len = 0;
     size_t offset = 0;
 
-    if (getline(&buffer, &len, input) == -1)
+    if (getline(&buffer, &len, input) == -1) {
+        free(buffer);
         return NULL;
+    }
     if (remove_end_of_line(buffer) == false)
         return NULL;
     array = malloc(sizeof(char *) * (4 + 1));

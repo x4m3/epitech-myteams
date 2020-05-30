@@ -12,7 +12,7 @@ channel_t *add_channel(char title[MAX_NAME_LENGTH],
 {
     uuid_t new_uuid_bin;
 
-    if ((team->list_of_channel = malloc(sizeof(team_t))) == NULL)
+    if ((team->list_of_channel = malloc(sizeof(channel_t))) == NULL)
         return NULL;
     uuid_generate_random(new_uuid_bin);
     uuid_unparse(new_uuid_bin, team->list_of_channel->channel_uuid);

@@ -16,6 +16,13 @@ static int display_usage(const char *bin, const int ret)
     return ret;
 }
 
+static void cleanup(server_t *server)
+{
+    delete_myteams(server->my_teams);
+    free(server->net_users);
+    free(server);
+}
+
 int main(int ac, char **av)
 {
     server_t *server = NULL;
@@ -30,6 +37,8 @@ int main(int ac, char **av)
         return display_usage(av[0], 84);
     server_loop(server);
     printf("preparing to exit: saving server data\n");
-    delete_myteams(server->my_teams);
+    printf("starting to cleanup memory\n");
+    cleanup(server);
+    printf("gtfo\n");
     return 0;
 }

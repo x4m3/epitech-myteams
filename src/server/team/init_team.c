@@ -11,9 +11,7 @@
 
 team_t *init_team(my_teams_t *my_teams)
 {
-    if ((my_teams->list_of_team = malloc(sizeof(team_t))) == NULL)
-        return NULL;
-    memset(my_teams->list_of_team, 0, sizeof(team_t));
-    TAILQ_INIT(&my_teams->team_head);
+    TAILQ_INIT(&my_teams->list_of_team->channel_head);
+    TAILQ_INIT(&my_teams->list_of_team->my_teams_uuid_head);
     return my_teams->list_of_team;
 }
