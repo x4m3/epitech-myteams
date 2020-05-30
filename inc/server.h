@@ -187,4 +187,7 @@ myteams_uuid_t *add_team_to_user(user_info_t *user, char user_uuid[UUID_STR_LEN]
 
 bool stay_alive(int new);
 
+bool write_all(my_teams_t *my_teams);
+bool write_users(my_teams_t *my_teams);
+
 #endif // SERVER_H_

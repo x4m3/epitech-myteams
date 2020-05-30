@@ -1,6 +1,6 @@
 
 
-.data
+.database
 	teams
 		team1-uuid
 			info.team
@@ -21,12 +21,11 @@
 					info.thread
 					replies are stored in info file
 	users
-		user1-uuid.user
-		user2-uuid.user
-	direct-messages
-		user1-uuid__user2-uuid
-			info.message
-			messages are stored in info message
+		uuid1.user
+		uuid2.user
+	private
+		uuid1__uuid2.private_msg
+		messages are stored in private file
 
 
 user-uuid.user
@@ -36,8 +35,7 @@ SUBSCRIBED_TEAM=bbbbb
 SUBSCRIBED_TEAM=ccccc
 SUBSCRIBED_TEAM=ddddd
 
-info.message
-uuid1__uuid2
+uuid1__uuid2.private_msg
 UUID1=uuid1
 UUID2=uuid2
 MESSAGE=author-uuid=timestamp=bodycontent
