@@ -62,13 +62,13 @@ void cmd_create(net_user_t *user, char **args)
 {
     my_teams_t *global_teams = get_global_teams(NULL);
 
-    if (user->user->list_of_instance->where == GLOBAL)
+    if (user->user->list_of_instance->where == W_GLOBAL)
         return create_team(global_teams, user, args);
-    if (user->user->list_of_instance->where == TEAM)
+    if (user->user->list_of_instance->where == W_TEAM)
         return create_channel(global_teams, user, args);
-    if (user->user->list_of_instance->where == CHANNEL)
+    if (user->user->list_of_instance->where == W_CHANNEL)
         return create_thread(global_teams, user, args);
-    if (user->user->list_of_instance->where == THREAD)
+    if (user->user->list_of_instance->where == W_THREAD)
         return create_reply(global_teams, user, args);
     return client_response(user->socket_fd,
         "congrats you have won a prize for triggering the impossible");

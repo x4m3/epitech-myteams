@@ -23,7 +23,7 @@
 
 #define SERVER_QUEUE 10
 
-enum where_e { GLOBAL = 0, TEAM, CHANNEL, THREAD };
+enum where_e { W_GLOBAL = 0, W_TEAM, W_CHANNEL, W_THREAD };
 
 typedef struct instance_t {
     int socket_fd;
