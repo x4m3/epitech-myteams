@@ -8,6 +8,9 @@
 #ifndef DATABASE_H_
 #define DATABASE_H_
 
+#include <stdbool.h>
+#include <stdio.h>
+
 #define DB_ROOT_PATH    ".database/"
 #define DB_USERS_PATH   DB_ROOT_PATH "users/"
 #define DB_PRIVATE_PATH DB_ROOT_PATH "private/"
@@ -19,5 +22,10 @@ typedef enum {
     CHANNEL = 7,
     THREAD = 6
 } file_extension_e;
+
+bool create_folder(const char *folder_path);
+char *construct_filename(char *name, file_extension_e ext);
+char *construct_filepath(char *base_path, char *filename);
+FILE *open_file_write(const char *file_path);
 
 #endif /* !DATABASE_H_ */
