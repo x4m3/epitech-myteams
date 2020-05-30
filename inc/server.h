@@ -21,6 +21,8 @@
 #include "logging_server.h"
 #include <bits/types/time_t.h>
 
+#define SERVER_QUEUE 10
+
 enum where_e { GLOBAL = 0, TEAM, CHANNEL, THREAD };
 
 typedef struct instance_t {
@@ -122,7 +124,7 @@ void server_loop(server_t *server);
 bool client_init(server_t *server);
 void client_delete(net_user_t *net_user);
 bool client_handle(net_user_t *net_user);
-char **client_input(FILE *input, char *buffer);
+char **client_input(FILE *input);
 void client_response(int output, const char *str);
 
 /* proto init structure */

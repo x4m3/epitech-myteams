@@ -22,8 +22,8 @@ async function receive(socket: Deno.Conn) {
 
 async function main() {
 
-    let inputs: Array<string> = [`/login "phil"`];
-    let socket = await Deno.connect({ port: 8080 });
+    let inputs: Array<string> = [`/create "wesh la street" "bien ou quoi?"`];
+    let socket = await Deno.connect({port: 8080});
 
     for (let i = 0; i < inputs.length; i++) {
         // read

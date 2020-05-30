@@ -15,7 +15,7 @@ static void process_input(net_user_t *net_user, char **input)
 {
     size_t i = 0;
 
-    for (size_t j = 0; input[j]; j++)
+    for (size_t j = 0; j < 5; j++)
         printf("array[%zu]: [%s]\n", j, input[j]);
     if (input[0] == NULL)
         client_response(net_user->socket_fd, "command not found");
@@ -31,13 +31,13 @@ static void process_input(net_user_t *net_user, char **input)
 
 bool client_handle(net_user_t *net_user)
 {
-    char *buffer = NULL;
-    char **array = client_input(net_user->input, buffer);
+    char **array = client_input(net_user->input);
 
     if (array == NULL)
         return false;
     process_input(net_user, array);
+    for (size_t i = 0; array[i] != NULL; i++)
+        free(array[i]);
     free(array);
-    free(buffer);
     return true;
 }
