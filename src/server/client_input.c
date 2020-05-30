@@ -79,17 +79,14 @@ static char *get_param(char **buffer, size_t *offset)
 char **client_input(FILE *input)
 {
     char **array = NULL;
-    char *getline_buffer = NULL;
     char *buffer = NULL;
     size_t len = 0;
     size_t offset = 0;
 
-    if (getline(&getline_buffer, &len, input) == -1)
+    if (getline(&buffer, &len, input) == -1)
         return NULL;
-    if (remove_end_of_line(getline_buffer) == false)
+    if (remove_end_of_line(buffer) == false)
         return NULL;
-    buffer = strdup(getline_buffer);
-    free(getline_buffer);
     array = malloc(sizeof(char *) * (4 + 1));
     array[0] = get_cmd(&buffer, &offset);
     for (size_t i = 1; i < 4; i++)
