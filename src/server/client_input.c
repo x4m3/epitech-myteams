@@ -58,29 +58,21 @@ static char *get_param(char **buffer, size_t *offset)
     while (raw[len_raw] != 0 && raw[len_raw] != '"')
         len_raw++;
     len_raw--;
-    for (size_t i = 0; i < len_raw; i++)
-        printf("[%c] ", raw[i]);
-    printf("    [%c]\n", raw[len_raw]);
     len_raw += 2;
     the_end = (raw[len_raw] == ' ') ? false : true;
     len_raw--;
-    printf("the_end %d\n", the_end);
     str = malloc(sizeof(char) * (len_raw + 1));
     if (str == NULL)
         return NULL;
     for (size_t i = 0; i < len_raw; i++)
         str[i] = raw[i];
     str[len_raw] = 0;
-    if (the_end == false) {
+    if (the_end == false)
         local_offset = (len_raw + 3);
-    } else {
+    else
         local_offset = (len_raw + 2);
-    }
     *offset += local_offset;
     *buffer += local_offset;
-    if (**buffer == 0) {
-        printf("buffer EOL\n");
-    }
     return str;
 }
 
@@ -115,8 +107,7 @@ char **client_input(FILE *input)
     printf("after get_cmd: [%s]\n", buffer);
     for (size_t i = 1; i < 4; i++) {
         array[i] = get_param(&buffer, &offset);
-        printf("[%zu]: after get_param: buffer [%s]      str: [%s]\n\n", i,
-            buffer, array[i]);
+        printf("after get_param: buffer [%s]\n", buffer);
     }
     array[4] = NULL;
     buffer -= offset;
