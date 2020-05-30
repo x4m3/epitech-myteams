@@ -48,8 +48,8 @@ void cmd_send(net_user_t *user, char **args)
             return;
         }
     }
-    create_conversation(global_teams, user->user->user_uuid,
-        user_uuid, msg_body);
+    create_conversation(
+        global_teams, user->user->user_uuid, user_uuid, msg_body);
     server_event_private_message_sended(
         user->user->user_uuid, user_uuid, msg_body);
 }
