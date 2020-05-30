@@ -44,5 +44,6 @@ void cmd_login(net_user_t *user, char **args)
     set_user_online(current_user);
     server_event_user_logged_in(current_user->user_uuid);
     user->user = current_user;
+    user->user->online = true;
     client_response(user->socket_fd, "you are now logged in");
 }

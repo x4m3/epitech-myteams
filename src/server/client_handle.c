@@ -24,9 +24,13 @@ static void process_input(net_user_t *net_user, char **input)
             break;
     }
     if (commands[i].name == NULL)
-        client_response(net_user->socket_fd, "command not found");
-    else
-        (commands[i].func)(net_user, input);
+        return client_response(net_user->socket_fd, "command not found");
+    if (strcmp(commands[i].name, "/help") != 0
+        && strcmp(commands[i].name, "/login") != 0) {
+        if (net_user->user == NULL || net_user->user->online == false)
+            return client_response(net_user->socket_fd, "not logged in\n");
+    }
+    (commands[i].func)(net_user, input);
 }
 
 bool client_handle(net_user_t *net_user)

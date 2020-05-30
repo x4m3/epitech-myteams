@@ -23,7 +23,7 @@
 
 #define SERVER_QUEUE 10
 
-enum where_e { GLOBAL = 0, TEAM, CHANNEL, THREAD };
+enum where_e { W_GLOBAL = 0, W_TEAM, W_CHANNEL, W_THREAD };
 
 typedef struct instance_t {
     int socket_fd;
@@ -177,6 +177,10 @@ direct_message_t *add_direct_message(
     my_teams_t *my_teams, char uuid1[UUID_STR_LEN], char uuid2[UUID_STR_LEN]);
 void list_private_message(direct_message_t *direct_message);
 user_info_t *find_user(my_teams_t *global_teams, bool username, char *to_find);
+bool check_team_uuid(my_teams_t *my_teams, char uuid_to_check[UUID_STR_LEN]);
+bool check_channel_uuid(team_t *team, char uuid_to_check[UUID_STR_LEN]);
+bool check_thread_uuid(channel_t *channel, char uuid_to_check[UUID_STR_LEN]);
+team_t *find_team(my_teams_t *my_teams, char uuid[UUID_STR_LEN]);
 
 bool stay_alive(int new);
 
