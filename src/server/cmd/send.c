@@ -34,25 +34,22 @@ void create_conversation(my_teams_t *global_teams, char uuid1[UUID_STR_LEN],
 void cmd_send(net_user_t *user, char **args)
 {
     my_teams_t *global_teams = get_global_teams(NULL);
-    char *user_uuid_no_quotes = NULL;
-    char *message_body_no_quotes = NULL;
+    char *user_uuid = args[1];
+    char *msg_body = args[2];
 
-    user_uuid_no_quotes = remove_quotes(args[1]);
-    message_body_no_quotes = remove_quotes(args[2]);
     TAILQ_FOREACH(global_teams->list_of_direct_message,
         &global_teams->direct_message_head, next_direct_message)
     {
-        if (is_good_uuuid(user->user->user_uuid, user_uuid_no_quotes,
+        if (is_good_uuuid(user->user->user_uuid, user_uuid,
                 global_teams->list_of_direct_message)
             == true) {
-            add_private_message(message_body_no_quotes, user->user->username,
+            add_private_message(msg_body, user->user->username,
                 global_teams->list_of_direct_message);
             return;
         }
     }
     create_conversation(global_teams, user->user->user_uuid,
-        user_uuid_no_quotes, message_body_no_quotes);
-    //    client_response(user->socket_fd, "message send");
+        user_uuid, msg_body);
     server_event_private_message_sended(
-        user->user->user_uuid, user_uuid_no_quotes, message_body_no_quotes);
+        user->user->user_uuid, user_uuid, msg_body);
 }
