@@ -10,69 +10,51 @@
 static void create_team(
     my_teams_t *global_teams, net_user_t *user, char **args)
 {
-    char *name_no_quotes = NULL;
-    char *desc_no_quotes = NULL;
+    char *name = args[1];
+    char *desc = args[2];
 
     if (check_input_args(2, args, user->socket_fd) == false)
         return;
-    name_no_quotes = remove_quotes(args[1]);
-    desc_no_quotes = remove_quotes(args[2]);
-    add_team(name_no_quotes, desc_no_quotes, global_teams);
-    free(name_no_quotes);
-    free(desc_no_quotes);
+    add_team(name, desc, global_teams);
     client_response(user->socket_fd, "team created");
 }
 
 static void create_channel(
     my_teams_t *global_teams, net_user_t *user, char **args)
 {
-    char *title_no_quotes = NULL;
-    char *desc_no_quotes = NULL;
+    char *title = args[1];
+    char *desc = args[2];
 
     if (check_input_args(2, args, user->socket_fd) == false)
         return;
-    title_no_quotes = remove_quotes(args[1]);
-    desc_no_quotes = remove_quotes(args[2]);
-    add_channel(title_no_quotes, desc_no_quotes, global_teams->list_of_team);
-    free(title_no_quotes);
-    free(desc_no_quotes);
+    add_channel(title, desc, global_teams->list_of_team);
     client_response(user->socket_fd, "thread created");
 }
 
 static void create_thread(
     my_teams_t *global_teams, net_user_t *user, char **args)
 {
-    char *author_no_quotes = NULL;
-    char *title_no_quotes = NULL;
-    char *message_no_quotes = NULL;
+    char *author = args[1];
+    char *title = args[2];
+    char *msg = args[3];
 
     if (check_input_args(3, args, user->socket_fd) == false)
         return;
-    author_no_quotes = remove_quotes(args[1]);
-    title_no_quotes = remove_quotes(args[2]);
-    message_no_quotes = remove_quotes(args[3]);
-    add_thread(author_no_quotes, title_no_quotes, message_no_quotes,
-        global_teams->list_of_team->list_of_channel);
-    free(title_no_quotes);
-    free(author_no_quotes);
-    free(message_no_quotes);
+    add_thread(
+        author, title, msg, global_teams->list_of_team->list_of_channel);
     client_response(user->socket_fd, "reply created");
 }
 
 static void create_reply(
     my_teams_t *global_teams, net_user_t *user, char **args)
 {
-    char *author_no_quotes = NULL;
-    char *message_no_quotes = NULL;
+    char *author = args[1];
+    char *msg = args[2];
 
     if (check_input_args(2, args, user->socket_fd) == false)
         return;
-    author_no_quotes = remove_quotes(args[1]);
-    message_no_quotes = remove_quotes(args[2]);
-    add_reply(author_no_quotes, message_no_quotes,
+    add_reply(author, msg,
         global_teams->list_of_team->list_of_channel->list_of_thread);
-    free(author_no_quotes);
-    free(message_no_quotes);
     client_response(user->socket_fd, "channel created");
 }
 
