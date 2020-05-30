@@ -9,7 +9,7 @@
 #include <string.h>
 #include "database.h"
 
-void fill_ext(char *ext, char *name, size_t *pos)
+static void fill_ext(char *ext, char *name, size_t *pos)
 {
     for (size_t i = 0; ext[i]; i++) {
         (*pos)++;
