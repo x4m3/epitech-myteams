@@ -14,9 +14,9 @@ direct_message_t *add_direct_message(
         return NULL;
     strcpy(my_teams->list_of_direct_message->uuid1, uuid1);
     strcpy(my_teams->list_of_direct_message->uuid2, uuid2);
+    init_conversation(my_teams->list_of_direct_message);
     TAILQ_INSERT_HEAD(&my_teams->direct_message_head,
         my_teams->list_of_direct_message, next_direct_message);
-    init_conversation(my_teams->list_of_direct_message);
     printf("add new team: [%s] [%s] \n",
         my_teams->list_of_direct_message->uuid1,
         my_teams->list_of_direct_message->uuid2);

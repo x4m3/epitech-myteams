@@ -28,8 +28,9 @@ void create_conversation(my_teams_t *global_teams, char uuid1[UUID_STR_LEN],
     global_teams->list_of_direct_message->list_of_message =
         add_private_message(
             message, uuid1, global_teams->list_of_direct_message);
-    client_response(user->user_uuid, message);
+    client_response(user->list_of_instance->socket_fd, message);
 }
+
 void cmd_send(net_user_t *user, char **args)
 {
     my_teams_t *global_teams = get_global_teams(NULL);
@@ -51,5 +52,7 @@ void cmd_send(net_user_t *user, char **args)
     }
     create_conversation(global_teams, user->user->user_uuid,
         user_uuid_no_quotes, message_body_no_quotes);
-    client_response(user->socket_fd, "message send");
+    //    client_response(user->socket_fd, "message send");
+    server_event_private_message_sended(
+        user->user->user_uuid, user_uuid_no_quotes, message_body_no_quotes);
 }

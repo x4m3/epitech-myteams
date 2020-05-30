@@ -22,6 +22,5 @@ user_info_t *add_user(my_teams_t *myTeams, char *username)
         myTeams->users->user_uuid);
     server_event_user_created(
         myTeams->users->user_uuid, myTeams->users->username);
-    init_instance(myTeams->users);
     return myTeams->users;
 }

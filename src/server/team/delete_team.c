@@ -14,10 +14,6 @@ void delete_team(my_teams_t *my_team)
         TAILQ_REMOVE(
             &my_team->team_head, my_team->team_head.tqh_first, next_team);
         delete_channel(my_team->list_of_team);
-        free(my_team->list_of_team);
-    }
-    if (my_team->list_of_team != NULL) {
-        delete_channel(my_team->list_of_team);
         delete_myteams_uuid(my_team->list_of_team);
         free(my_team->list_of_team);
     }

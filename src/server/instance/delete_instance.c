@@ -14,10 +14,13 @@ bool delete_one_instance(user_info_t *user, int socket_fd)
         if (user->list_of_instance->socket_fd == socket_fd) {
             TAILQ_REMOVE(
                 &user->instance_head, user->list_of_instance, next_instance);
-            free(user->list_of_instance);
+            if (user->list_of_instance != NULL) {
+                free(user->list_of_instance);
+            }
             return true;
         }
     }
+
     return false;
 }
 
@@ -27,6 +30,8 @@ void delete_all_instances(user_info_t *user)
         user->list_of_instance = TAILQ_FIRST(&user->instance_head);
         TAILQ_REMOVE(&user->instance_head, user->instance_head.tqh_first,
             next_instance);
-        free(user->list_of_instance);
+        if (user->list_of_instance != NULL) {
+            free(user->list_of_instance);
+        }
     }
 }
