@@ -77,11 +77,12 @@ char *concat_args_to_cli(
 void send_thread_event_creation(
     my_teams_t *global_teams, char *author, char *msg, net_user_t *user)
 {
-    thread_t *thread = global_teams->list_of_team->list_of_channel
-        ->list_of_thread;
-    char *param_to_send =
-        concat_args_to_cli(thread->thread_uuid, author, ctime(&thread->creation_date), thread->title);
-    char *complete_params = malloc(sizeof(char) * strlen(param_to_send) + strlen(thread->message) + 1);
+    thread_t *thread =
+        global_teams->list_of_team->list_of_channel->list_of_thread;
+    char *param_to_send = concat_args_to_cli(thread->thread_uuid, author,
+        ctime(&thread->creation_date), thread->title);
+    char *complete_params = malloc(
+        sizeof(char) * strlen(param_to_send) + strlen(thread->message) + 1);
     memset(complete_params, 0, strlen(param_to_send) + strlen(msg));
     strcat(complete_params, param_to_send);
     strcat(complete_params, thread->message);

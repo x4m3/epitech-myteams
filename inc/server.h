@@ -203,7 +203,6 @@ direct_message_t *find_direct_messsage(
 void send_thread_event_creation(
     my_teams_t *global_teams, char *author, char *msg, net_user_t *user);
 
-
 /* stay alive (SIGINT handler) */
 bool stay_alive(int new);
 
