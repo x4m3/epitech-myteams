@@ -44,16 +44,14 @@ static void handle_messages(int sockFd, command_t *cmd)
     }
     getline(&buffer, &size, stream);
     remove_end_of_line(buffer);
-    
+    parse_args_from_response(buffer, cmd);
     free(buffer);
 }
 
 static void send_messages(client_t *client, char *line, command_t *cmd)
 {
     char *line_copy = strdup(line);
-    if (!cmd)
-        cmd = init_command_struct();
-    if (cmd->cmd != NULL)
+    if (cmd->cmd)
         free(cmd->cmd);
     cmd->cmd = strtok(line_copy, " ");
     send(client->sockFd, line, strlen(line), 0);
@@ -65,7 +63,7 @@ void manage_client_serv_com(client_t *client)
     fd_set ready_sock;
     char *line = NULL;
     size_t size;
-    command_t *cmd;
+    command_t *cmd = init_command_struct();
 
     FD_ZERO(&current_sock);
     FD_SET(client->sockFd, &current_sock);
@@ -75,11 +73,10 @@ void manage_client_serv_com(client_t *client)
             exit(EXIT_FAILURE);
         if (FD_ISSET(client->sockFd, &ready_sock))
             handle_messages(client->sockFd, cmd);
+        line = NULL;
         if (FD_ISSET(client->sockFd, &ready_sock))
             getline(&line, &size, stdin);
         if (FD_ISSET(client->sockFd, &ready_sock))
             send_messages(client, line, cmd);
-        if (line)
-            free(line);
     }
 }
