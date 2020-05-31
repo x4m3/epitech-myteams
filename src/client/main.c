@@ -10,9 +10,10 @@
 
 static int helper(void)
 {
-    printf("USAGE:\t./myteams_cli ip port\n\tip\tis the server ip "
-           "address on which the server socket listens\n\tport\tis the port"
-           " number on which the server socket listens\n");
+    printf("USAGE:\t./myteams_cli ip port\n");
+    printf(
+        "\tip\tis the server ip address on which the server socket listens\n");
+    printf("\tport\tis the port number on which the server socket listens\n");
     return (0);
 }
 
