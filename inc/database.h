@@ -28,6 +28,7 @@ void recursive_mkdir(const char *dir);
 char *construct_filename(char *name, file_extension_e ext);
 char *construct_filepath(char *base_path, char *filename);
 FILE *open_file_write(const char *file_path);
+FILE *open_file_read(const char *file_path);
 
 /* user */
 void store_subscribed_teams(user_info_t *user, FILE *output);
