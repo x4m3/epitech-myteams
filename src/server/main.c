@@ -23,14 +23,9 @@ static void cleanup(server_t *server)
     free(server);
 }
 
-int main(int ac, char **av)
+static void my_teams(char **av)
 {
     server_t *server = NULL;
-
-    if (ac != 2)
-        return display_usage(av[0], 84);
-    if (strcmp(av[1], "-help") == 0)
-        return display_usage(av[0], 0);
 
     server = server_init(av);
     if (server == NULL)
@@ -40,6 +35,15 @@ int main(int ac, char **av)
     write_all(server->my_teams);
     printf("starting to cleanup memory\n");
     cleanup(server);
-    printf("gtfo\n");
+    printf("that's all folks!\n");
+}
+
+int main(int ac, char **av)
+{
+    if (ac != 2)
+        return display_usage(av[0], 84);
+    if (strcmp(av[1], "-help") == 0)
+        return display_usage(av[0], 0);
+    my_teams(av);
     return 0;
 }
