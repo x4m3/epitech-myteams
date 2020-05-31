@@ -36,6 +36,9 @@ static void call_lib_function(command_t *cmd)
     switch (cmd->c) {
         case LOGIN: client_event_loggedin(cmd->args[0], cmd->args[1]); break;
         case LOGOUT: client_event_loggedout(cmd->args[0], cmd->args[1]); break;
+        case USER:
+            client_print_user(cmd->args[0], cmd->args[1], atoi(cmd->args[2]));
+            break;
         default: break;
     }
 }
