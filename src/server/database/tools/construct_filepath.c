@@ -22,6 +22,5 @@ char *construct_filepath(char *base_path, char *filename)
     for (size_t j = 0; filename[j] != 0; i++, j++)
         str[i] = filename[j];
     str[i] = 0;
-    free(filename);
     return str;
 }
