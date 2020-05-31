@@ -54,7 +54,8 @@ static char *alloc_concat_param(
     return concat_param;
 }
 
-char *concat_args_to_cli(char *param1, char *param2, char *param3, char *param4)
+char *concat_args_to_cli(
+    char *param1, char *param2, char *param3, char *param4)
 {
     char *concat_param = NULL;
 

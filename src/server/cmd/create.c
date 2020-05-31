@@ -33,7 +33,7 @@ static void create_channel(
     global_teams->list_of_team = find_team(global_teams, instance->team_uuid);
     global_teams->list_of_team->list_of_channel =
         add_channel(title, desc, global_teams->list_of_team);
-        server_event_channel_created(global_teams->list_of_team->team_uuid,
+    server_event_channel_created(global_teams->list_of_team->team_uuid,
         global_teams->list_of_team->list_of_channel->channel_uuid, title);
     client_response(user->socket_fd, "channel created");
 }
