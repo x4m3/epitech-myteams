@@ -200,6 +200,10 @@ team_t *is_team_exist(my_teams_t *myTeams, char uuid_send[UUID_STR_LEN]);
 void remove_team_to_user(user_info_t *user, char *team_uuid);
 direct_message_t *find_direct_messsage(
     user_info_t *user, my_teams_t *my_teams, char *user_uuid);
+void send_thread_event_creation(
+    my_teams_t *global_teams, char *author, char *msg, net_user_t *user);
+
+
 /* stay alive (SIGINT handler) */
 bool stay_alive(int new);
 

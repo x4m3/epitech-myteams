@@ -10,6 +10,8 @@
 void cmd_logout(net_user_t *user, char **args)
 {
     (void) args;
+    char *param_to_send = concat_args_to_cli(
+        user->user->user_uuid, user->user->username, NULL, NULL);
 
     if (user->user == NULL)
         return client_response(user->socket_fd, "not logged in");
@@ -17,5 +19,6 @@ void cmd_logout(net_user_t *user, char **args)
         user->user->online = false;
     delete_one_instance(user->user, user->socket_fd);
     server_event_user_logged_out(user->user->user_uuid);
-    client_response(user->socket_fd, "you are now logged out");
+    client_response(user->socket_fd, param_to_send);
+    free(param_to_send);
 }
