@@ -81,7 +81,7 @@ char **client_input(FILE *input)
     array = malloc(sizeof(char *) * (4 + 1));
     array[0] = get_cmd(&buffer, &offset);
     for (size_t i = 1; i < 4; i++)
-         array[i] = get_param(&buffer, &offset);
+        array[i] = get_param(&buffer, &offset);
     array[4] = NULL;
     buffer -= offset;
     free(buffer);
