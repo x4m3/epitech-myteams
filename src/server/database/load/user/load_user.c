@@ -9,9 +9,22 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "database.h"
+#include "shared.h"
 
-static void load_user_data(FILE *input, my_teams_t *my_teams)
+static void load_user_data(my_teams_t *my_teams)
 {
+}
+
+static void get_content(FILE *input, my_teams_t *my_teams)
+{
+    char *buffer = NULL;
+    size_t len = 0;
+
+    while (getline(&buffer, &len, input) != -1) {
+        remove_end_of_line(buffer);
+        printf("[%s]\n", buffer);
+    }
+    free(buffer);
 }
 
 static bool load_user(my_teams_t *my_teams, char *filename)
@@ -24,7 +37,7 @@ static bool load_user(my_teams_t *my_teams, char *filename)
     input = open_file_read(filepath);
     if (input == NULL)
         return false;
-    load_user_data(input, my_teams);
+    get_content(input, my_teams);
     free(filepath);
     fclose(input);
     return true;
