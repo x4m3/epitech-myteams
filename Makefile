@@ -21,6 +21,8 @@ OBJ_SERVER = $(SRC_SERVER_MAIN:%.c=$(BUILD_DIR)/%.o)
 SRC_SERVER =	    src/server/channel/delete_channel.c \
                     src/server/channel/init_channel.c \
                     src/server/channel/add_channel.c \
+                    src/server/channel/find_channel.c \
+                    src/server/channel/check_channel_uuid.c \
                     src/server/cmd/cmd.c \
                     src/server/cmd/create.c \
                     src/server/cmd/help.c \
@@ -35,6 +37,9 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
                     src/server/cmd/use.c \
                     src/server/cmd/user.c \
                     src/server/cmd/users.c \
+					src/server/cmd/tools/check_input_args.c \
+					src/server/cmd/tools/get_number_args.c \
+					src/server/get_global_teams.c \
 					src/server/direct_message/add_direct_message.c \
 					src/server/direct_message/delete_direct_message.c \
 					src/server/direct_message/init_direct_message.c \
@@ -45,6 +50,7 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
 					src/server/my_teams_uuid/add_myteams_uuid.c \
 			        src/server/instance/delete_instance.c \
                     src/server/instance/init_instance.c \
+                    src/server/instance/find_instance.c \
                     src/server/instance/get_number_instance.c \
                     src/server/instance/add_instance.c \
                     src/server/message/delete_message.c \
@@ -57,11 +63,15 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
                     src/server/team/delete_team.c \
                     src/server/team/init_team.c \
                     src/server/team/add_team.c \
+                    src/server/team/find_team.c \
+                    src/server/team/check_team_uuid.c \
                     src/server/team/list_user_subcribed.c \
                     src/server/team/list_team.c \
                     src/server/thread/delete_thread.c \
                     src/server/thread/init_thread.c \
                     src/server/thread/add_thread.c \
+                    src/server/thread/find_thread.c \
+                    src/server/thread/check_thread_uuid.c \
                     src/server/user_info/delete_user_info.c \
                     src/server/user_info/init_user_info.c \
                     src/server/user_info/add_user.c \
@@ -73,8 +83,6 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
                     src/server/client_response.c \
                     src/server/server_init.c \
                     src/server/server_loop.c \
-					src/server/cmd/tools/check_input_args.c \
-					src/server/get_global_teams.c \
 					src/server/stay_alive.c \
 					src/server/database/tools/construct_filepath.c \
 					src/server/database/write_all.c \

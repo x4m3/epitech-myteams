@@ -15,6 +15,7 @@ void delete_user_info(my_teams_t *myteams)
             myteams->user_info_head.tqh_first, next_users);
         if (myteams->users != NULL) {
             delete_all_instances(myteams->users);
+            delete_myteams_uuid_in_user(myteams->users);
             free(myteams->users);
         }
     }
