@@ -7,16 +7,17 @@
 
 #include "server.h"
 
-void list_user(my_teams_t *myTeams, int socket_user)
+void list_user(my_teams_t *my_teams, int socket_user)
 {
-    TAILQ_FOREACH(myTeams->users, &myTeams->user_info_head, next_users)
+    char *param_to_send_cli = NULL;
+
+    TAILQ_FOREACH(my_teams->users, &my_teams->user_info_head, next_users)
     {
-        client_response(socket_user, myTeams->users->username);
-        client_response(socket_user, myTeams->users->user_uuid);
-        if (myTeams->users->online == true)
-            client_response(socket_user, "online");
-        else
-            client_response(socket_user, "not online");
+        param_to_send_cli = concat_args_to_cli(
+            my_teams->users->user_uuid, my_teams->users->username,
+            (my_teams->users->online == true) ? "0" : "1", NULL);
+        client_response(socket_user, param_to_send_cli);
+        free(param_to_send_cli);
     }
 }
 

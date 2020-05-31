@@ -77,8 +77,8 @@ void cmd_use(net_user_t *user, char **args)
     instance = find_instance(user->user, user->socket_fd);
     if (instance->where == W_TEAM)
         client_response(instance->socket_fd, "switch to team");
-    else if (instance->where == W_CHANNEL)
+    if (instance->where == W_CHANNEL)
         client_response(instance->socket_fd, "switch to channel");
-    else if (instance->where == W_THREAD)
+    if (instance->where == W_THREAD)
         client_response(instance->socket_fd, "switch to thread");
 }
