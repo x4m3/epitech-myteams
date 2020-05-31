@@ -186,6 +186,10 @@ team_t *find_team(my_teams_t *my_teams, char uuid[UUID_STR_LEN]);
 myteams_uuid_t *add_team_to_user(
     user_info_t *user, char user_uuid[UUID_STR_LEN]);
 void delete_myteams_uuid_in_user(user_info_t *user);
+thread_t *find_thread(channel_t *channel, char *uuid);
+channel_t *find_channel(team_t *team, char *uuid);
+instance_t *find_instance(user_info_t *user, int socket);
+int get_number_params(char **args);
 
 bool stay_alive(int new);
 
