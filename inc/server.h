@@ -160,6 +160,7 @@ user_info_t *add_user(my_teams_t *myTeams, char *username, char *user_uuid);
 instance_t *add_instance(user_info_t *user, int socket_id);
 
 void list_user(my_teams_t *myTeams, int socket_user);
+void list_user_internal(my_teams_t *myTeams);
 void list_team(my_teams_t *myTeams, int socket_user);
 void list_users_subscribed(team_t *team, int socket_user);
 myteams_uuid_t *add_team_uuid(team_t *team, char user_uuid[UUID_STR_LEN]);
@@ -191,12 +192,11 @@ channel_t *find_channel(team_t *team, char *uuid);
 instance_t *find_instance(user_info_t *user, int socket);
 int get_number_params(char **args);
 team_t *add_team_loading(char name[MAX_NAME_LENGTH],
-    char description[MAX_DESCRIPTION_LENGTH], my_teams_t *my_teams, char *user_uuid);
-
+    char description[MAX_DESCRIPTION_LENGTH], my_teams_t *my_teams,
+    char *user_uuid);
 
 /* stay alive (SIGINT handler) */
 bool stay_alive(int new);
-
 
 /* database write */
 bool write_all(my_teams_t *my_teams);

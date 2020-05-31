@@ -19,3 +19,14 @@ void list_user(my_teams_t *myTeams, int socket_user)
             client_response(socket_user, "not online");
     }
 }
+
+void list_user_internal(my_teams_t *myTeams)
+{
+    printf("[list_user_internal] start\n");
+    TAILQ_FOREACH(myTeams->users, &myTeams->user_info_head, next_users)
+    {
+        printf("uuid [%s]  username [%s]\n", myTeams->users->user_uuid,
+            myTeams->users->username);
+    }
+    printf("[list_user_internal] end\n");
+}
