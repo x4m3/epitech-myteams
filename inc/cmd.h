@@ -27,6 +27,7 @@ void cmd_send(net_user_t *user, char **args);
 void cmd_messages(net_user_t *user, char **args);
 void cmd_subscribe(net_user_t *user, char **args);
 void cmd_subscribed(net_user_t *user, char **args);
+void cmd_unsubscribe(net_user_t *user, char **args);
 void cmd_use(net_user_t *user, char **args);
 void cmd_create(net_user_t *user, char **args);
 void cmd_list(net_user_t *user, char **args);

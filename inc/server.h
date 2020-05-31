@@ -196,6 +196,9 @@ team_t *add_team_loading(char name[MAX_NAME_LENGTH],
     char *user_uuid);
 char *concat_args_to_cli(
     char *param1, char *param2, char *param3, char *param4);
+team_t *is_team_exist(my_teams_t *myTeams, char uuid_send[UUID_STR_LEN]);
+void remove_team_to_user(user_info_t *user, char *team_uuid);
+
 
 /* stay alive (SIGINT handler) */
 bool stay_alive(int new);

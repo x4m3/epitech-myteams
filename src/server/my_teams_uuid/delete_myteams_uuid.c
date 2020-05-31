@@ -26,3 +26,19 @@ void delete_myteams_uuid_in_user(user_info_t *user)
         free(user->uuid_subcribed);
     }
 }
+
+void remove_team_to_user(user_info_t *user, char *team_uuid)
+{
+    struct myteams_uuid_t *item;
+    struct myteams_uuid_t *tmp_item;
+
+    for (item = TAILQ_FIRST(&user->my_teams_uuid_head); item != NULL;
+         item = tmp_item) {
+        tmp_item = TAILQ_NEXT(item, next_user_uuid);
+        if (strcmp(user->uuid_subcribed->uuid, team_uuid) == 0) {
+            TAILQ_REMOVE(&user->my_teams_uuid_head, item, next_user_uuid);
+            free(item);
+            break;
+        }
+    }
+}

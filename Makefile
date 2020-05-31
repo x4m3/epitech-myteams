@@ -33,6 +33,7 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
                     src/server/cmd/messages.c \
                     src/server/cmd/send.c \
                     src/server/cmd/subscribe.c \
+                    src/server/cmd/unsubscribe.c \
                     src/server/cmd/subscribed.c \
                     src/server/cmd/use.c \
                     src/server/cmd/user.c \
