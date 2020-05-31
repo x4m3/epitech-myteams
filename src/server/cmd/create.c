@@ -12,13 +12,17 @@ static void create_team(
 {
     char *name = args[1];
     char *desc = args[2];
+    char *arg_to_send = NULL;
 
     if (check_input_args(2, args, user->socket_fd) == false)
         return;
     global_teams->list_of_team = add_team(name, desc, global_teams);
     server_event_team_created(
         global_teams->list_of_team->team_uuid, name, user->user->user_uuid);
-    client_response(user->socket_fd, "team created");
+    arg_to_send = concat_args_to_cli(
+        global_teams->list_of_team->team_uuid, name, desc, NULL);
+    client_response(user->socket_fd, arg_to_send);
+    free(arg_to_send);
 }
 
 static void create_channel(
@@ -27,6 +31,7 @@ static void create_channel(
     char *title = args[1];
     char *desc = args[2];
     instance_t *instance = find_instance(user->user, user->socket_fd);
+    char *arg_to_send = NULL;
 
     if (check_input_args(2, args, user->socket_fd) == false)
         return;
@@ -35,7 +40,11 @@ static void create_channel(
         add_channel(title, desc, global_teams->list_of_team);
     server_event_channel_created(global_teams->list_of_team->team_uuid,
         global_teams->list_of_team->list_of_channel->channel_uuid, title);
-    client_response(user->socket_fd, "channel created");
+    arg_to_send = concat_args_to_cli(
+        global_teams->list_of_team->list_of_channel->channel_uuid, title, desc,
+        NULL);
+    client_response(user->socket_fd, arg_to_send);
+    free(arg_to_send);
 }
 
 static void create_thread(
@@ -58,7 +67,7 @@ static void create_thread(
         global_teams->list_of_team->list_of_channel->list_of_thread
             ->thread_uuid,
         title);
-    client_response(user->socket_fd, "reply created");
+    send_thread_event_creation(global_teams, author, msg, user);
 }
 
 static void create_reply(
