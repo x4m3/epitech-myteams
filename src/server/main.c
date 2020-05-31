@@ -23,27 +23,27 @@ static void cleanup(server_t *server)
     free(server);
 }
 
-static void my_teams(char **av)
+static void my_teams(server_t *server)
 {
-    server_t *server = NULL;
-
-    server = server_init(av);
-    if (server == NULL)
-        return display_usage(av[0], 84);
+    load_all(server->my_teams);
     server_loop(server);
-    printf("preparing to exit: saving server data\n");
     write_all(server->my_teams);
-    printf("starting to cleanup memory\n");
+    printf("[server]    freeing resources\n");
     cleanup(server);
-    printf("that's all folks!\n");
+    printf("[server]    bye\n");
 }
 
 int main(int ac, char **av)
 {
+    server_t *server = NULL;
+
     if (ac != 2)
         return display_usage(av[0], 84);
     if (strcmp(av[1], "-help") == 0)
         return display_usage(av[0], 0);
-    my_teams(av);
+    server = server_init(av);
+    if (server == NULL)
+        return display_usage(av[0], 84);
+    my_teams(server);
     return 0;
 }

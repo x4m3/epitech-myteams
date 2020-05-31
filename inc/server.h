@@ -186,9 +186,14 @@ team_t *find_team(my_teams_t *my_teams, char uuid[UUID_STR_LEN]);
 myteams_uuid_t *add_team_to_user(
     user_info_t *user, char user_uuid[UUID_STR_LEN]);
 
+/* stay alive (SIGINT handler) */
 bool stay_alive(int new);
 
+/* database write */
 bool write_all(my_teams_t *my_teams);
 bool write_users(my_teams_t *my_teams);
+
+/* database load */
+bool load_all(my_teams_t *my_teams);
 
 #endif // SERVER_H_

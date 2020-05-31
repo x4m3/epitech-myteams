@@ -52,15 +52,17 @@ static bool network_handling(server_t *server)
 static void sighandler(__attribute__((unused)) int sig)
 {
     stay_alive(0);
-    printf("    Ah, ha, ha, ha, stayin' alive, stayin' alive (rip)\n");
+    printf("[server]    shutdown request\n");
 }
 
 void server_loop(server_t *server)
 {
+    printf("[server]    available for orders\n");
     stay_alive(1);
     signal(SIGINT, &sighandler);
     while (stay_alive(-1) == true) {
         if (network_handling(server) == false)
             return;
     }
+    printf("[server]    preparing for shutdown\n");
 }
