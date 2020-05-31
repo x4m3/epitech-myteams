@@ -15,6 +15,5 @@ FILE *open_file_read(const char *file_path)
         printf("[database]  failed to open [%s] for reading.\n", file_path);
         return NULL;
     }
-    printf("[database]  file [%s] is open for reading.\n", file_path);
     return file;
 }
