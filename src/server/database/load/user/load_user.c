@@ -36,7 +36,6 @@ static void get_content(FILE *input, my_teams_t *my_teams)
 
     while (getline(&buffer, &len, input) != -1) {
         remove_end_of_line(buffer);
-        printf("[%s]\n", buffer);
         load_user_data(my_teams, buffer);
     }
     free(buffer);
