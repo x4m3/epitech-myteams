@@ -7,15 +7,18 @@
 
 #include "server.h"
 
-user_info_t *add_user(my_teams_t *myTeams, char *username)
+user_info_t *add_user(my_teams_t *myTeams, char *username, char *user_uuid)
 {
     uuid_t new_uuid_bin;
 
     if ((myTeams->users = malloc(sizeof(user_info_t))) == NULL)
         return NULL;
     memset(myTeams->users, 0, sizeof(user_info_t));
-    uuid_generate_random(new_uuid_bin);
-    uuid_unparse(new_uuid_bin, myTeams->users->user_uuid);
+    if (user_uuid == NULL) {
+        uuid_generate_random(new_uuid_bin);
+        uuid_unparse(new_uuid_bin, myTeams->users->user_uuid);
+    } else
+        strcpy(myTeams->users->user_uuid, user_uuid);
     strcpy(myTeams->users->username, username);
     TAILQ_INSERT_HEAD(&(myTeams->user_info_head), myTeams->users, next_users);
     printf("add new user: [%s] [%s]\n", myTeams->users->username,
@@ -24,3 +27,4 @@ user_info_t *add_user(my_teams_t *myTeams, char *username)
         myTeams->users->user_uuid, myTeams->users->username);
     return myTeams->users;
 }
+
