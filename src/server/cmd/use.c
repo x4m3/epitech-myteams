@@ -70,6 +70,7 @@ void cmd_use(net_user_t *user, char **args)
 {
     my_teams_t *global_teams = get_global_teams(NULL);
     int nb_args = get_number_params(args);
+    instance_t *instance = find_instance(user->user, user->socket_fd);
 
     if (nb_args == 0)
         return client_response(user->socket_fd, "not enougth args");

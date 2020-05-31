@@ -27,5 +27,6 @@ void cmd_subscribe(net_user_t *user, char **args)
     global_teams->list_of_team = is_team_exist(global_teams, team_uuid);
     add_team_uuid(global_teams->list_of_team, user->user->user_uuid);
     add_team_to_user(user->user, team_uuid);
+    server_event_user_join_a_team(team_uuid, user->user->user_uuid);
     client_response(user->socket_fd, "welcome to the team");
 }

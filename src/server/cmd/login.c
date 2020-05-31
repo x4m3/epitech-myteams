@@ -29,21 +29,30 @@ static void set_user_online(user_info_t *user)
         user->online = true;
 }
 
+static void store_info(user_info_t *current_user, net_user_t *user)
+{
+    add_instance(current_user, user->socket_fd);
+    set_user_online(current_user);
+    server_event_user_logged_in(current_user->user_uuid);
+    user->user = current_user;
+    user->user->online = true;
+}
+
 void cmd_login(net_user_t *user, char **args)
 {
     my_teams_t *global_teams = get_global_teams(NULL);
     char *username = args[1];
     user_info_t *current_user = NULL;
+    char *param_to_send_cli = NULL;
 
     if (check_input_args(1, args, user->socket_fd) == false)
         return;
     current_user = find_user(global_teams, true, username);
     if (current_user == NULL)
         current_user = add_user(global_teams, username, NULL);
-    add_instance(current_user, user->socket_fd);
-    set_user_online(current_user);
-    server_event_user_logged_in(current_user->user_uuid);
-    user->user = current_user;
-    user->user->online = true;
-    client_response(user->socket_fd, "you are now logged in");
+    store_info(current_user, user);
+    param_to_send_cli =
+        concat_args_to_cli(user->user->user_uuid, username, NULL, NULL);
+    client_response(user->socket_fd, param_to_send_cli);
+    free(param_to_send_cli);
 }

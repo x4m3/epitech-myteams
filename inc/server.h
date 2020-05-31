@@ -192,7 +192,7 @@ instance_t *find_instance(user_info_t *user, int socket);
 int get_number_params(char **args);
 team_t *add_team_loading(char name[MAX_NAME_LENGTH],
     char description[MAX_DESCRIPTION_LENGTH], my_teams_t *my_teams, char *user_uuid);
-
+char *concat_args_to_cli(char *param1, char *param2, char *param3, char *param4);
 
 /* stay alive (SIGINT handler) */
 bool stay_alive(int new);
