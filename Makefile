@@ -39,6 +39,7 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
                     src/server/cmd/users.c \
 					src/server/cmd/tools/check_input_args.c \
 					src/server/cmd/tools/get_number_args.c \
+					src/server/cmd/tools/concat_args_to_cli.c \
 					src/server/get_global_teams.c \
 					src/server/direct_message/add_direct_message.c \
 					src/server/direct_message/delete_direct_message.c \

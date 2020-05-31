@@ -58,5 +58,4 @@ void cmd_subscribed(net_user_t *user, char **args)
     } else {
         list_all_user_in_team(global_teams, team_uuid, user->socket_fd);
     }
-    // client_response(user->socket_fd, "subscribed");
 }

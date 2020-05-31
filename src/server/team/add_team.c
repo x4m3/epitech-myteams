@@ -31,7 +31,8 @@ team_t *add_team(char name[MAX_NAME_LENGTH],
 }
 
 team_t *add_team_loading(char name[MAX_NAME_LENGTH],
-    char description[MAX_DESCRIPTION_LENGTH], my_teams_t *my_teams, char *user_uuid)
+    char description[MAX_DESCRIPTION_LENGTH], my_teams_t *my_teams,
+    char *user_uuid)
 {
     if ((my_teams->list_of_team = malloc(sizeof(team_t))) == NULL)
         return NULL;

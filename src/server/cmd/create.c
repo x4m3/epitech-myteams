@@ -15,7 +15,9 @@ static void create_team(
 
     if (check_input_args(2, args, user->socket_fd) == false)
         return;
-    add_team(name, desc, global_teams);
+    global_teams->list_of_team = add_team(name, desc, global_teams);
+    server_event_team_created(
+        global_teams->list_of_team->team_uuid, name, user->user->user_uuid);
     client_response(user->socket_fd, "team created");
 }
 
@@ -24,11 +26,16 @@ static void create_channel(
 {
     char *title = args[1];
     char *desc = args[2];
+    instance_t *instance = find_instance(user->user, user->socket_fd);
 
     if (check_input_args(2, args, user->socket_fd) == false)
         return;
-    add_channel(title, desc, global_teams->list_of_team);
-    client_response(user->socket_fd, "thread created");
+    global_teams->list_of_team = find_team(global_teams, instance->team_uuid);
+    global_teams->list_of_team->list_of_channel =
+        add_channel(title, desc, global_teams->list_of_team);
+        server_event_channel_created(global_teams->list_of_team->team_uuid,
+        global_teams->list_of_team->list_of_channel->channel_uuid, title);
+    client_response(user->socket_fd, "channel created");
 }
 
 static void create_thread(
@@ -37,11 +44,20 @@ static void create_thread(
     char *author = args[1];
     char *title = args[2];
     char *msg = args[3];
+    instance_t *instance = find_instance(user->user, user->socket_fd);
 
     if (check_input_args(3, args, user->socket_fd) == false)
         return;
+    global_teams->list_of_team = find_team(global_teams, instance->team_uuid);
+    global_teams->list_of_team->list_of_channel =
+        find_channel(global_teams->list_of_team, instance->channel_uuid);
     add_thread(
         author, title, msg, global_teams->list_of_team->list_of_channel);
+    server_event_thread_created(global_teams->list_of_team->team_uuid,
+        global_teams->list_of_team->list_of_channel->channel_uuid,
+        global_teams->list_of_team->list_of_channel->list_of_thread
+            ->thread_uuid,
+        title);
     client_response(user->socket_fd, "reply created");
 }
 
