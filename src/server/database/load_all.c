@@ -25,6 +25,7 @@ bool load_all(my_teams_t *my_teams)
 {
     if (check_folder() == false)
         return false;
+    load_users(my_teams);
     printf("[database]  database has been loaded\n");
     return true;
 }

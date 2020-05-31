@@ -83,7 +83,8 @@ SRC_SERVER =	    src/server/channel/delete_channel.c \
 					src/server/database/write/open_file_write.c \
 					src/server/database/write/user/write_users.c \
 					src/server/database/write/user/store_subscribed_teams.c \
-					src/server/database/load_all.c
+					src/server/database/load_all.c \
+					src/server/database/load/user/load_user.c
 SRC_SERVER_MAIN =	src/server/main.c \
 				$(SRC_SERVER)
 

@@ -195,5 +195,6 @@ bool write_users(my_teams_t *my_teams);
 
 /* database load */
 bool load_all(my_teams_t *my_teams);
+bool load_users(my_teams_t *my_teams);
 
 #endif // SERVER_H_
