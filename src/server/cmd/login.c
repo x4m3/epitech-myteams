@@ -39,7 +39,7 @@ void cmd_login(net_user_t *user, char **args)
         return;
     current_user = find_user(global_teams, true, username);
     if (current_user == NULL)
-        current_user = add_user(global_teams, username);
+        current_user = add_user(global_teams, username, NULL);
     add_instance(current_user, user->socket_fd);
     set_user_online(current_user);
     server_event_user_logged_in(current_user->user_uuid);

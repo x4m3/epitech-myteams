@@ -156,7 +156,7 @@ void delete_conversation(direct_message_t *direct_message);
 bool check_input_args(size_t nb, char **args, int socket_fd);
 
 my_teams_t *get_global_teams(my_teams_t *new);
-user_info_t *add_user(my_teams_t *myTeams, char *username);
+user_info_t *add_user(my_teams_t *myTeams, char *username, char *user_uuid);
 instance_t *add_instance(user_info_t *user, int socket_id);
 
 void list_user(my_teams_t *myTeams, int socket_user);
