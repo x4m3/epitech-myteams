@@ -19,8 +19,6 @@ message_t *add_reply(
     thread->list_of_message->creation_date = now;
     TAILQ_INSERT_HEAD(
         &thread->message_head, thread->list_of_message, next_message);
-    printf("add new message: [%s] [%s]\n", thread->list_of_message->author,
-        thread->list_of_message->body_message);
     return thread->list_of_message;
 }
 

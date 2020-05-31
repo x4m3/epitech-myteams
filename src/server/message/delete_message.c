@@ -11,7 +11,7 @@ static void delete_msg_thread(thread_t *thread)
 {
     while (thread->message_head.tqh_first != NULL) {
         thread->list_of_message = TAILQ_FIRST(&thread->message_head);
-        TAILQ_REMOVE(&thread->message_head, thread->message_head.tqh_first,
+        TAILQ_REMOVE(&thread->message_head, thread->list_of_message,
             next_message);
         if (thread->list_of_message != NULL)
             free(thread->list_of_message);
@@ -24,7 +24,7 @@ static void delete_msg_teams(direct_message_t *direct_message)
         direct_message->list_of_message =
             TAILQ_FIRST(&direct_message->message_head);
         TAILQ_REMOVE(&direct_message->message_head,
-            direct_message->message_head.tqh_first, next_message);
+            direct_message->list_of_message, next_message);
         if (direct_message->list_of_message != NULL)
             free(direct_message->list_of_message);
     }

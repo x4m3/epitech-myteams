@@ -19,9 +19,4 @@ void delete_channel(team_t *team)
             free(team->list_of_channel);
         }
     }
-
-    if (team->list_of_channel != NULL) {
-        delete_thread(team->list_of_channel);
-        free(team->list_of_channel);
-    }
 }

@@ -66,12 +66,20 @@ static void create_reply(
 {
     char *author = args[1];
     char *msg = args[2];
+    instance_t *instance = find_instance(user->user, user->socket_fd);
 
     if (check_input_args(2, args, user->socket_fd) == false)
         return;
+    global_teams->list_of_team = find_team(global_teams, instance->team_uuid);
+    global_teams->list_of_team->list_of_channel =
+        find_channel(global_teams->list_of_team, instance->channel_uuid);
+    global_teams->list_of_team->list_of_channel->list_of_thread = find_thread(
+        global_teams->list_of_team->list_of_channel, instance->thread_uuid);
     add_reply(author, msg,
         global_teams->list_of_team->list_of_channel->list_of_thread);
-    client_response(user->socket_fd, "channel created");
+    server_event_thread_new_message(global_teams->list_of_team->list_of_channel
+                                        ->list_of_thread->thread_uuid,
+        user->user->user_uuid, msg);
 }
 
 void cmd_create(net_user_t *user, char **args)
