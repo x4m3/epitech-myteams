@@ -21,8 +21,7 @@ static void attribute_cmd(command_t *cmd)
     cmd->c = (strncmp(cmd->cmd, "/messages", 9) == 0) ? (MESSAGES) : (cmd->c);
     cmd->c = (strcmp(cmd->cmd, "/subscribe") == 0) ? (SUBSCRIBE) : (cmd->c);
     cmd->c = (strcmp(cmd->cmd, "/subscribed") == 0) ? (SUBSCRIBED) : (cmd->c);
-    cmd->c = (strncmp(cmd->cmd, "/unsubscribe", 12) == 0) ? (UNSUBSCRIBE)
-                                                          : (cmd->c);
+    cmd->c = (strncmp(cmd->cmd, "/unsubscribe", 12) == 0) ? (UNSUB) : (cmd->c);
     cmd->c = (strcmp(cmd->cmd, "/use") == 0) ? (USE) : (cmd->c);
     cmd->c = (strncmp(cmd->cmd, "/create", 7) == 0) ? (CREATE) : (cmd->c);
     cmd->c = (strncmp(cmd->cmd, "/list", 5) == 0) ? (LIST) : (cmd->c);
@@ -46,9 +45,10 @@ void parse_args_from_response(char *response, command_t *cmd)
     if ((cmd->args[0] = strtok(response, ",")) == NULL) {
         return;
     } else {
-        for (size_t i = 1; i < 6 && (cmd->args[i] = strtok(NULL, ",")) != NULL;
-             i++)
-            ;
+        for (size_t i = 1;
+             i < 6 && (cmd->args[i] = strtok(NULL, ",")) != NULL;) {
+            i++;
+        }
     }
     attribute_cmd(cmd);
     if (cmd->c == NONE)

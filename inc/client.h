@@ -28,7 +28,7 @@ typedef enum cmd_list {
     MESSAGES,
     SUBSCRIBE,
     SUBSCRIBED,
-    UNSUBSCRIBE,
+    UNSUB,
     USE,
     CREATE,
     LIST,
