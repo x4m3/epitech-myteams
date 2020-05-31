@@ -74,12 +74,14 @@ char **client_input(FILE *input)
         free(buffer);
         return NULL;
     }
-    if (remove_end_of_line(buffer) == false)
+    if (*buffer == '\n' || remove_end_of_line(buffer) == false) {
+        free(buffer);
         return NULL;
+    }
     array = malloc(sizeof(char *) * (4 + 1));
     array[0] = get_cmd(&buffer, &offset);
     for (size_t i = 1; i < 4; i++)
-        array[i] = get_param(&buffer, &offset);
+         array[i] = get_param(&buffer, &offset);
     array[4] = NULL;
     buffer -= offset;
     free(buffer);

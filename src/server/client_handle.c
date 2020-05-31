@@ -35,8 +35,10 @@ bool client_handle(net_user_t *net_user)
 {
     char **array = client_input(net_user->input);
 
-    if (array == NULL)
+    if (array == NULL) {
+        client_response(net_user->socket_fd, "no input provided. fuck off\n");
         return false;
+    }
     process_input(net_user, array);
     for (size_t i = 0; array[i] != NULL; i++)
         free(array[i]);

@@ -45,7 +45,7 @@ direct_message_t *check_if_conv_exist(net_user_t *user, char *msg_body,
         if (is_good_uuuid(user_uuid, user->user->user_uuid,
                 global_teams->list_of_direct_message)
             == true) {
-            add_private_message(msg_body, user->user->username,
+            add_private_message(msg_body, user->user->user_uuid,
                 global_teams->list_of_direct_message);
             return global_teams->list_of_direct_message;
         }

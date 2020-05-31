@@ -7,13 +7,14 @@
 
 #include "server.h"
 
-void list_private_message(direct_message_t *direct_message)
+void list_private_message(direct_message_t *direct_message, int socket_user)
 {
+    printf("%p\n", &direct_message->message_head);
     TAILQ_FOREACH(direct_message->list_of_message,
         &direct_message->message_head, next_message)
     {
-        printf("%ld %s : %s\n", direct_message->list_of_message->creation_date,
-            direct_message->list_of_message->author,
-            direct_message->list_of_message->body_message);
+        client_response(socket_user, direct_message->list_of_message->author);
+        client_response(
+            socket_user, direct_message->list_of_message->body_message);
     }
 }

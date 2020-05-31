@@ -178,7 +178,7 @@ message_t *add_private_message(char message[MAX_BODY_LENGTH],
     char author[UUID_STR_LEN], direct_message_t *direct_message);
 direct_message_t *add_direct_message(
     my_teams_t *my_teams, char uuid1[UUID_STR_LEN], char uuid2[UUID_STR_LEN]);
-void list_private_message(direct_message_t *direct_message);
+void list_private_message(direct_message_t *direct_message, int socket_user);
 user_info_t *find_user(my_teams_t *global_teams, bool username, char *to_find);
 bool check_team_uuid(my_teams_t *my_teams, char uuid_to_check[UUID_STR_LEN]);
 bool check_channel_uuid(team_t *team, char uuid_to_check[UUID_STR_LEN]);
@@ -198,7 +198,8 @@ char *concat_args_to_cli(
     char *param1, char *param2, char *param3, char *param4);
 team_t *is_team_exist(my_teams_t *myTeams, char uuid_send[UUID_STR_LEN]);
 void remove_team_to_user(user_info_t *user, char *team_uuid);
-
+direct_message_t *find_direct_messsage(
+    user_info_t *user, my_teams_t *my_teams, char *user_uuid);
 /* stay alive (SIGINT handler) */
 bool stay_alive(int new);
 

@@ -4,7 +4,7 @@
 ** File description:
 ** foo
 */
-
+/*
 #include "server.h"
 
 void list_direct_message(char author[UUID_STR_LEN], my_teams_t *my_teams)
@@ -18,3 +18,4 @@ void list_direct_message(char author[UUID_STR_LEN], my_teams_t *my_teams)
             list_private_message(my_teams->list_of_direct_message);
     }
 }
+*/
