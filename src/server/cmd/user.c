@@ -9,7 +9,6 @@
 
 void cmd_user(net_user_t *user, char **args)
 {
-    bool found = false;
     my_teams_t *global_teams = get_global_teams(NULL);
     char *user_uuid = args[1];
     char *param_to_send_cli = NULL;
@@ -20,13 +19,13 @@ void cmd_user(net_user_t *user, char **args)
         global_teams->users, &global_teams->user_info_head, next_users)
     {
         if (strcmp(global_teams->users->username, user_uuid) == 0) {
-            param_to_send_cli =
-                concat_args_to_cli(global_teams->users->user_uuid, global_teams->users->username, NULL, NULL);
-            found = true;
+            param_to_send_cli = concat_args_to_cli(
+                global_teams->users->user_uuid, global_teams->users->username,
+                (global_teams->users->online == true) ? "0" : "1", NULL);
             break;
         }
     }
-    if (found == false)
+    if (param_to_send_cli == NULL)
         return;
     else {
         client_response(user->socket_fd, param_to_send_cli);
