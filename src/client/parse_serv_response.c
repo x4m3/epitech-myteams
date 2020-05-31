@@ -10,7 +10,7 @@
 static void attribute_cmd(command_t *cmd)
 {
     if (!cmd->cmd)
-        return; 
+        return;
     cmd->c = NONE;
     cmd->c = (strncmp(cmd->cmd, "/login", 6) == 0) ? (LOGIN) : (cmd->c);
     cmd->c = (strncmp(cmd->cmd, "/logout", 7) == 0) ? (LOGOUT) : (cmd->c);
@@ -19,10 +19,8 @@ static void attribute_cmd(command_t *cmd)
     cmd->c = (strcmp(cmd->cmd, "/user") == 0) ? (USER) : (cmd->c);
     cmd->c = (strncmp(cmd->cmd, "/send", 5) == 0) ? (SEND) : (cmd->c);
     cmd->c = (strncmp(cmd->cmd, "/messages", 9) == 0) ? (MESSAGES) : (cmd->c);
-    cmd->c =
-        (strcmp(cmd->cmd, "/subscribe") == 0) ? (SUBSCRIBE) : (cmd->c);
-    cmd->c =
-        (strcmp(cmd->cmd, "/subscribed") == 0) ? (SUBSCRIBED) : (cmd->c);
+    cmd->c = (strcmp(cmd->cmd, "/subscribe") == 0) ? (SUBSCRIBE) : (cmd->c);
+    cmd->c = (strcmp(cmd->cmd, "/subscribed") == 0) ? (SUBSCRIBED) : (cmd->c);
     cmd->c = (strncmp(cmd->cmd, "/unsubscribe", 12) == 0) ? (UNSUBSCRIBE)
                                                           : (cmd->c);
     cmd->c = (strcmp(cmd->cmd, "/use") == 0) ? (USE) : (cmd->c);
