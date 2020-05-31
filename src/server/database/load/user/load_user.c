@@ -11,8 +11,22 @@
 #include "database.h"
 #include "shared.h"
 
-static void load_user_data(my_teams_t *my_teams)
+static void extract_value(void)
 {
+    char *value = strtok(NULL, "=");
+    printf("user value [%s]\n", value);
+}
+
+static void load_user_data(my_teams_t *my_teams, char *buffer)
+{
+    char *key = strtok(buffer, "=");
+
+    if (strcmp(key, "UUID") == 0)
+        extract_value();
+    if (strcmp(key, "USERNAME") == 0)
+        extract_value();
+    // TODO: subscribed_teams
+    // TODO: add user to linked list
 }
 
 static void get_content(FILE *input, my_teams_t *my_teams)
@@ -23,6 +37,7 @@ static void get_content(FILE *input, my_teams_t *my_teams)
     while (getline(&buffer, &len, input) != -1) {
         remove_end_of_line(buffer);
         printf("[%s]\n", buffer);
+        load_user_data(my_teams, buffer);
     }
     free(buffer);
 }
