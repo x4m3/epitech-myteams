@@ -14,6 +14,7 @@ team_t *add_team(char name[MAX_NAME_LENGTH],
 
     if ((my_teams->list_of_team = malloc(sizeof(team_t))) == NULL)
         return NULL;
+    memset(my_teams->list_of_team, 0, sizeof(team_t));
     uuid_generate_random(new_uuid_bin);
     uuid_unparse(new_uuid_bin, my_teams->list_of_team->team_uuid);
     strcpy(my_teams->list_of_team->description, description);
