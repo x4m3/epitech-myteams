@@ -64,7 +64,8 @@ void cmd_send(net_user_t *user, char **args)
         return;
     dm = check_if_conv_exist(user, msg_body, user_uuid, global_teams);
     global_teams->list_of_direct_message = dm;
-    printf("apres avoir trouve le dm %p \n", global_teams->list_of_direct_message);
+    printf("apres avoir trouve le dm %p \n",
+        global_teams->list_of_direct_message);
     if (global_teams->list_of_direct_message == NULL)
         create_conversation(
             global_teams, user->user->user_uuid, user_uuid, msg_body);
