@@ -15,7 +15,7 @@ static void store_user_data(FILE *output, user_info_t *user)
     store_subscribed_teams(user, output);
 }
 
-static bool write_user(user_info_t *user, const char *filepath)
+static bool write_user(user_info_t *user, char *filepath)
 {
     FILE *output = open_file_write(filepath);
 
@@ -23,6 +23,7 @@ static bool write_user(user_info_t *user, const char *filepath)
         return false;
     store_user_data(output, user);
     fclose(output);
+    free(filepath);
     return true;
 }
 
@@ -42,8 +43,8 @@ bool write_users(my_teams_t *my_teams)
             free(filename);
             return false;
         }
+        free(filename);
         ret = write_user(my_teams->users, filepath);
-        free(filepath);
         if (ret == false)
             return false;
     }
