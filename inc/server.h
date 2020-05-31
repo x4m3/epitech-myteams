@@ -190,9 +190,13 @@ thread_t *find_thread(channel_t *channel, char *uuid);
 channel_t *find_channel(team_t *team, char *uuid);
 instance_t *find_instance(user_info_t *user, int socket);
 int get_number_params(char **args);
+team_t *add_team_loading(char name[MAX_NAME_LENGTH],
+    char description[MAX_DESCRIPTION_LENGTH], my_teams_t *my_teams, char *user_uuid);
+
 
 /* stay alive (SIGINT handler) */
 bool stay_alive(int new);
+
 
 /* database write */
 bool write_all(my_teams_t *my_teams);
