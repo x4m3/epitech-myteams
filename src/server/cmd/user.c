@@ -18,7 +18,7 @@ void cmd_user(net_user_t *user, char **args)
     TAILQ_FOREACH(
         global_teams->users, &global_teams->user_info_head, next_users)
     {
-        if (strcmp(global_teams->users->username, user_uuid) == 0) {
+        if (strcmp(global_teams->users->user_uuid, user_uuid) == 0) {
             param_to_send_cli = concat_args_to_cli(
                 global_teams->users->user_uuid, global_teams->users->username,
                 (global_teams->users->online == true) ? "0" : "1", NULL);
