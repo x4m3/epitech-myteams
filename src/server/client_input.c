@@ -9,20 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-static bool remove_end_of_line(char *str)
-{
-    size_t pos_end_of_line = 0;
-
-    if (str == NULL)
-        return false;
-    for (size_t i = 0; str[i]; i++)
-        if (str[i] == '\n')
-            pos_end_of_line = i;
-    if (pos_end_of_line != 0)
-        str[pos_end_of_line] = 0;
-    return true;
-}
+#include "shared.h"
 
 static char *copy_buffer(char *buffer, size_t len)
 {

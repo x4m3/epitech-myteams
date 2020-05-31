@@ -7,19 +7,7 @@
 
 #include "client.h"
 #include "myteams.h"
-
-static void remove_end_of_line(char *str)
-{
-    size_t pos_end_of_line = 0;
-
-    if (str == NULL)
-        return;
-    for (size_t i = 0; str[i]; i++)
-        if (str[i] == '\n')
-            pos_end_of_line = i;
-    if (pos_end_of_line != 0)
-        str[pos_end_of_line] = 0;
-}
+#include "shared.h"
 
 static void handle_messages(int sockFd)
 {

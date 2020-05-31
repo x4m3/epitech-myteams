@@ -15,7 +15,7 @@ CFLAGS += -Wall -Wextra -I./libs/myteams -I./inc
 LDFLAGS += -L ./libs/myteams -lmyteams -luuid
 
 OBJ_SHARED = $(SRC_SHARED:%.c=$(BUILD_DIR)/%.o)
-SRC_SHARED =	src/shared/bin.c
+SRC_SHARED =	src/shared/remove_end_of_line.c
 
 OBJ_SERVER = $(SRC_SERVER_MAIN:%.c=$(BUILD_DIR)/%.o)
 SRC_SERVER =	    src/server/channel/delete_channel.c \
