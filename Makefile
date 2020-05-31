@@ -101,7 +101,9 @@ SRC_SERVER_MAIN =	src/server/main.c \
 				$(SRC_SERVER)
 
 OBJ_CLI = $(SRC_CLI_MAIN:%.c=$(BUILD_DIR)/%.o)
-SRC_CLI =	src/client/manage_serv_response.c
+SRC_CLI =	src/client/manage_serv_response.c	\
+			src/client/parse_serv_response.c	\
+
 SRC_CLI_MAIN =	src/client/main.c \
 				$(SRC_CLI)
 
