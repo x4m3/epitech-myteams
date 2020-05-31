@@ -11,8 +11,8 @@ static void delete_msg_thread(thread_t *thread)
 {
     while (thread->message_head.tqh_first != NULL) {
         thread->list_of_message = TAILQ_FIRST(&thread->message_head);
-        TAILQ_REMOVE(&thread->message_head, thread->list_of_message,
-            next_message);
+        TAILQ_REMOVE(
+            &thread->message_head, thread->list_of_message, next_message);
         if (thread->list_of_message != NULL)
             free(thread->list_of_message);
     }
